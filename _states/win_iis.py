@@ -1,5 +1,11 @@
 '''
-IIS Management
+Microsoft IIS site management
+
+.. versionadded:: 2015.8.1
+
+This module provides the ability to add/remove websites and application pools from
+Microsoft IIS.
+
 '''
 
 # Import python libs
@@ -23,8 +29,43 @@ def __virtual__():
         return __virtualname__
     return False
 
-def deployed(name, protocol, sourcepath, port, apppool='', hostheader='', ipaddress=''):
-    # Confirm site is deployed
+def deployed(
+        name,
+        protocol,
+        sourcepath,
+        port,
+        apppool='',
+        hostheader='',
+        ipaddress=''):
+    '''
+    Ensure the website has been deployed. This only validates against the website name
+    and will not update information on existing websites with the same name. If the 
+    website name doesn't exist it will create with the provided parameters.
+
+    name
+        Name of the website in IIS.
+
+    protocol
+        http or https
+
+    sourcepath
+        The directory path on the IIS server to use as a root file store.
+        example: c:\websites\website1
+
+    port
+        The network port to listen for traffic.
+        example: 80
+
+    apppool
+        The application pool to configure for the website. Must already exist.
+
+    hostheader
+        The hostheader to route to this website.
+
+    ipaddress
+        The website ipaddress
+
+    '''
     ret = {'name': name,
            'changes': {},
            'result': None,
@@ -61,6 +102,14 @@ def deployed(name, protocol, sourcepath, port, apppool='', hostheader='', ipaddr
 
 def remove_site(name):
     # Remove IIS website
+    '''
+    Remove an existing website from the webserver.
+
+    name
+        The website name as shown in IIS.
+
+
+    '''
 
     ret = {'name': name,
            'changes': {},
@@ -88,7 +137,16 @@ def remove_site(name):
     return ret
 
 def create_apppool(name):
- # Confirm IIS Application is deployed
+    # Confirm IIS Application is deployed
+
+    '''
+    Creates an IIS application pool.
+
+    name
+        The name of the application pool to use
+
+    '''
+
     ret = {'name': name,
            'changes': {},
            'result': None,
@@ -119,6 +177,13 @@ def create_apppool(name):
 
 def remove_apppool(name):
     # Remove IIS AppPool
+    '''
+    Removes an existing Application Pool from the server
+
+    name
+        The name of the application pool to remove
+
+    '''
 
     ret = {'name': name,
            'changes': {},
