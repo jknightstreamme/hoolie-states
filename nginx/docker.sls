@@ -3,7 +3,6 @@
 "Download corp image":
   dockerng.image_present:
     - name: 'saltme/nginx:0.6'
-    - order: 20000
     - require:
       - pip: "Docker Python API"
 
@@ -23,7 +22,6 @@
     - dns:
       - 8.8.8.8
       - 8.8.4.4
-    - order: 20001
     - require:
       - dockerng: "Download corp image"
 
