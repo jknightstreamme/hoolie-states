@@ -11,12 +11,13 @@
 
 "Pull in POC site code":
   git.latest:
-    - name: git@github.com:trebortech/salt-poc.git
+    - name: git@srv-poc:trebortech/salt-poc.git
     - target: {{ workingdir }}
     - rev: {{ env }}
     - branch: {{ env }}
     - identity: /etc/salt/master.d/salt-poc-docker.priv
     - force_checkout: True
+    - force_clone: True
 
 # Update the master.d configuration files
 
