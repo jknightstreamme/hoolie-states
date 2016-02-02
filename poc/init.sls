@@ -19,12 +19,6 @@
     - force_checkout: True
     - force_clone: True
 
-# Update the master.d configuration files
-
-## Reactor config
-
-## Auth config
-
 # Update salt server files
 "Update the vmware cloud file with custom config":
   file.managed:
