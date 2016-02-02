@@ -15,9 +15,16 @@
     - user: root
     - group: root
 
-"Push the cloud maps example files":
+"Push the cloud maps example files:":
   file.recurse:
     - name: /etc/salt/cloud.maps.d
     - source: salt://filestore/cloud.maps.d
+    - user: root
+    - group: root
+
+"Push the cloud support files ":
+  file.recurse:
+    - name: /etc/salt/cloud.files.d
+    - source: salt://filestore/cloud.files.d
     - user: root
     - group: root
