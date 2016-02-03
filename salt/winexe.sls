@@ -7,3 +7,7 @@
     - name: winexe
     - sources:
       - winexe: salt://filestore/winexe_1.00.1-11.1_amd64.deb
+
+"Install Impacket":
+  pip.installed:
+    - name: impacket
