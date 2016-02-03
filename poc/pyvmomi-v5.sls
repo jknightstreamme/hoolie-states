@@ -14,4 +14,4 @@
   pip.installed:
     - name: pyvmomi == 5.5.0.2014.1.1
     - require:
-      - cmd: 'Update PIP'
+      - cmd: 'easy_install -U pip'
