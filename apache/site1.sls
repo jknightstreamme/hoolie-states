@@ -2,7 +2,10 @@
 
 
 # Deploy web content for site 1
-
+"Site 1":
+  file.recurse:
+    - name: /var/www/site1
+    - source: salt://sites/site1
 
 # Deploy Site 1 Configuration file
 "Site 1 apache config file":
