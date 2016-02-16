@@ -15,8 +15,9 @@
 
 # Restart httpd service if configuration file updated
 
-"Restart apache to apply change":
-  service.running:
-    - name: httpd
+"Restart HTTPD service":
+  cmd.wait:
+    - name: 'sudo service httpd restart'
+    - use_vt: True
     - watch:
       - file: "Site 1 apache config file"
