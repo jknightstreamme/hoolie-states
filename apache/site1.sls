@@ -17,6 +17,6 @@
 
 "Restart apache to apply change":
   service.running:
-    - name: httpd_salt
+    - name: httpd
     - watch:
       - file: "Site 1 apache config file"
