@@ -15,3 +15,8 @@
 
 # Restart httpd service if configuration file updated
 
+"Restart apache to apply change":
+  service.running:
+    - name: httpd
+    - watch:
+      - file: "Site 1 apache config file"
