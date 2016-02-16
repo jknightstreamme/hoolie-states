@@ -18,6 +18,5 @@
 "Restart apache to apply change":
   service.running:
     - name: httpd
-    - sudo: True
     - watch:
       - file: "Site 1 apache config file"
