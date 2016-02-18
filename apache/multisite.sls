@@ -44,7 +44,7 @@
     - name: 'sudo service httpd reload'
     - use_vt: True
     - watch:
-      - pkg: "{{ site.name }} apache config file"
+      - file: "{{ site.name }} apache config file"
 
 {% endfor %}
 
