@@ -17,6 +17,10 @@ defaults
     timeout server    10000
 
 frontend demo-http
+    bind *:80
+    default_backend demo-servers
+
+backend demo-servers
     mode http
     stats enable
     stats uri /haproxy?stats
@@ -25,10 +29,6 @@ frontend demo-http
     balance roundrobin
     option httpclose
     option forwardfor
-    bind *:80
-    default_backend demo-servers
-
-backend demo-servers
     server web-server1 10.5.1.126:80 check
     server web-server2 10.5.1.234:80 check
     server ubuntu1 10.5.1.43:80 check
