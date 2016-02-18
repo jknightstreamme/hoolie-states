@@ -1,3 +1,10 @@
+{% if grains['os_family'] == 'RedHat' %}
+    {% set sshd = 'sshd' %}
+
+{% elif grains['os_family'] == 'Debian' %}
+    {% set sshd = 'ssh' %}
+
+
 "Update ChallengeResponseAuthentication":
   file.replace:
     - name: '/etc/ssh/sshd_config'
@@ -28,7 +35,7 @@
 
 "Restart SSHD service":
   cmd.wait:
-    - name: 'sudo service sshd restart'
+    - name: 'sudo service {{ sshd }} restart'
     - use_vt: True
     - watch:
       - file: "Update ChallengeResponseAuthentication"
