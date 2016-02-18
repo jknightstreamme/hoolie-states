@@ -12,3 +12,7 @@
 "Install apache / httpd":
   pkg.installed:
     - name: {{ httpd }}
+
+"Confirm service starts":
+  service.enabled:
+    - name: {{ httpd }}
