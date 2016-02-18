@@ -13,9 +13,16 @@
   pkg.installed:
     - name: {{ httpd }}
 
+
+"Restart HTTPD service":
+  cmd.wait:
+    - name: 'sudo service httpd restart'
+    - use_vt: True
+    - watch:
+      - pkg: "Install apache / httpd"
+
 "Confirm service starts":
-  service.running:
+  service.enabled:
     - name: {{ httpd }}
-    - enable: True
     - watch:
       - pkg: "Install apache / httpd"

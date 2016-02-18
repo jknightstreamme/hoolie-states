@@ -38,4 +38,14 @@
     - pattern: 'MINION_NAME'
     - repl: {{ grains['id'] }}
     - backup: False
+
+"Reload HTTPD service after {{ site.name }} deployment":
+  cmd.wait:
+    - name: 'sudo service httpd reload'
+    - use_vt: True
+    - watch:
+      - pkg: "{{ site.name }} apache config file"
+
 {% endfor %}
+
+
