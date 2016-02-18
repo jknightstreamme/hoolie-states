@@ -3,24 +3,28 @@
     - name: '/etc/ssh/sshd_config'
     - pattern: 'ChallengeResponseAuthentication yes'
     - repl: 'ChallengeResponseAuthentication no'
+    - backup: False
 
 "Update PrintMotd":
   file.replace:
     - name: '/etc/ssh/sshd_config'
     - pattern: 'PrintMotd no'
     - repl: 'PrintMotd yes'
+    - backup: False
 
 "Update UsePAM":
   file.replace:
     - name: '/etc/ssh/sshd_config'
     - pattern: 'UsePAM no'
     - repl: 'UsePAM yes'
+    - backup: False
 
 "Update PasswordAuthentication":
   file.replace:
     - name: '/etc/ssh/sshd_config'
     - pattern: 'PasswordAuthentication no'
     - repl: 'PasswordAuthentication yes'
+    - backup: False
 
 "Restart SSHD After update":
   service.started:
