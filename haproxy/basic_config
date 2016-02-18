@@ -18,9 +18,11 @@ defaults
 
 frontend demo-http
     bind *:80
-    default_backend demo-servers
+    acl site2url  hdr_beg(host) -i site2
+    use_backend site2 if site2url
+    default_backend site1
 
-backend demo-servers
+backend site1
     mode http
     stats enable
     stats uri /haproxy?stats
@@ -31,4 +33,16 @@ backend demo-servers
     option forwardfor
     server web-server1 10.5.1.126:80 check
     server web-server2 10.5.1.234:80 check
+    server ubuntu1 10.5.1.43:80 check
+
+backend site2
+    mode http
+    stats enable
+    stats uri /haproxy?stats
+    stats realm Strictly\ Private
+    stats auth salt:saltme
+    balance roundrobin
+    option httpclose
+    option forwardfor
+    server web-server1 10.5.1.126:80 check
     server ubuntu1 10.5.1.43:80 check
