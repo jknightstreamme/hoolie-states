@@ -26,9 +26,10 @@
     - repl: 'PasswordAuthentication yes'
     - backup: False
 
-"Restart SSHD After update":
-  service.started:
-    - name: 'sshd'
+"Restart SSHD service":
+  cmd.wait:
+    - name: 'sudo service sshd restart'
+    - use_vt: True
     - watch:
       - file: "Update ChallengeResponseAuthentication"
       - file: "Update PrintMotd"
