@@ -13,7 +13,7 @@
 
 {% for site in sites %}
 
-{% if site in grains['sites'] %}
+{% if site.src_files in grains['sites'] %}
 
 "{{ site.name }} site files deploy":
   file.recurse:
