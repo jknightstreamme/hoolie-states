@@ -27,14 +27,14 @@
     - makedirs: True
     - mode: 600
 
-"Update Server Name":
+"Update Server Name to {{ site.name }}":
   file.replace:
     - name: /var/www/{{ site.src_files }}/index.html
     - pattern: 'SITE_NAME'
     - repl: {{ site.name }}
     - backup: False
 
-"Update Minion Name":
+"Update Minion Name for {{ site.name }}":
   file.replace:
     - name: /var/www/{{ site.src_files }}/index.html
     - pattern: 'MINION_NAME'
