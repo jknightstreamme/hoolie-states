@@ -22,7 +22,7 @@
 
 "{{ site.name }} apache config file":
   file.managed:
-    - name: {{ site.config_path }}site1.conf
+    - name: {{ config_path }}site1.conf
     - source: salt://apache/{{ site.config_file }}.conf
     - makedirs: True
     - mode: 600
