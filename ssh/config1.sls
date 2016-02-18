@@ -4,6 +4,7 @@
 {% elif grains['os_family'] == 'Debian' %}
     {% set sshd = 'ssh' %}
 
+{% endif %}
 
 "Update ChallengeResponseAuthentication":
   file.replace:
