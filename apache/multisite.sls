@@ -5,10 +5,10 @@
     ] %}
 
 {% if grains['os_family'] == 'RedHat' %}
-{% config_path = '/etc/httpd/config.d/' %}
+{% set config_path = '/etc/httpd/config.d/' %}
 
 {% elif grains['os_family'] == 'Debian' %}
-{% config_path = '/etc/apache2/sites-enabled/' %}
+{% set config_path = '/etc/apache2/sites-enabled/' %}
 
 {% endif %}
 
