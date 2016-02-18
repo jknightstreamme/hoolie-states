@@ -14,7 +14,8 @@
     - name: {{ httpd }}
 
 "Confirm service starts":
-  service.enabled:
+  service.running:
     - name: {{ httpd }}
+    - enabled: True
     - watch:
       - pkg: "Install apache / httpd"
