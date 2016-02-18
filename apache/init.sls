@@ -13,14 +13,6 @@
   pkg.installed:
     - name: {{ httpd }}
 
-"Allow NameVirtualHost":
-  file.replace:
-    - name: '/etc/httpd/conf/httpd.conf'
-    - pattern: 'NameVirtualHost *:80'
-    - repl: '#NameVirtualHost *:80'
-    - backup: False
-
-
 "Confirm service starts":
   service.enabled:
     - name: {{ httpd }}
