@@ -26,5 +26,20 @@
     - source: salt://apache/{{ site.config_file }}.conf
     - makedirs: True
     - mode: 600
+
+"Update Server Name":
+  file.replace:
+    - name: /var/www/{{ site.src_files }}/index.html
+    - pattern: 'SITE_NAME'
+    - repl: {{ site.name }}
+    - backup: False
+
+"Update Minion Name":
+  file.replace:
+    - name: /var/www/{{ site.src_files }}/index.html
+    - pattern: 'MINION_NAME'
+    - repl: {{ grains['id'] }}
+    - backup: False
+
 {% endif %}
 {% endfor %}
