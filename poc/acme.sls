@@ -14,6 +14,22 @@
     - name: /var/www/acme
     - source: salt://sites/acme
 
+
+"Update Server Name to ACME":
+  file.replace:
+    - name: /var/www/acme/index.html
+    - pattern: 'SITE_NAME'
+    - repl: 'ACME'
+    - backup: False
+
+"Update Minion Name for ACME":
+  file.replace:
+    - name: /var/www/acme/index.html
+    - pattern: 'MINION_NAME'
+    - repl: {{ grains['id'] }}
+    - backup: False
+
+
 # Deploy Site 1 Configuration file
 "ACME apache config file":
   file.managed:
