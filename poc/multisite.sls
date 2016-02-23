@@ -1,7 +1,7 @@
 
 {% set sites = [
     {'name': 'ACME', 'src_files': 'acme', 'config_file': 'acme'},
-    {'name': 'StarBucks', 'src_files': 'hoolie', 'config_file': 'hoolie'}
+    {'name': 'Hoolie', 'src_files': 'hoolie', 'config_file': 'hoolie'}
     ] %}
 
 {% if grains['os_family'] == 'RedHat' %}
