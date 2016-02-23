@@ -12,7 +12,7 @@
 "ACME apache config file":
   file.managed:
     - name: /etc/httpd/conf.d/acme.conf
-    - source: salt://apache/acme.conf
+    - source: salt://poc/acme.conf
     - makedirs: True
     - mode: 600
 

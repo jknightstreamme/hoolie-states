@@ -12,7 +12,7 @@
 "Hoolie apache config file":
   file.managed:
     - name: /etc/httpd/conf.d/hoolie.conf
-    - source: salt://apache/hoolie.conf
+    - source: salt://poc/hoolie.conf
     - makedirs: True
     - mode: 600
 
