@@ -13,7 +13,7 @@
 
 {% for site in sites %}
 
-{% if site.src_files|lower in salt['grains.get']('sites', '')|lower%}
+{% if site.src_files|lower in salt['grains.get']('brand', '')|lower%}
 
 "{{ site.name }} site files deploy":
   file.recurse:
