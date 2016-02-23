@@ -1,5 +1,10 @@
 #Hoolie Site Deployment
+{% if grains['os_family'] == 'RedHat' %}
+{% set httpd = 'httpd' %}
 
+{% elif grains['os_family'] == 'Debian' %}
+{% set httpd = 'apache2' %}
+{% endif %}
 
 
 # Deploy web content for Hoolie
@@ -21,7 +26,7 @@
 
 "Restart HTTPD service":
   cmd.wait:
-    - name: 'sudo service httpd restart'
+    - name: 'sudo service {{ httpd }} restart'
     - use_vt: True
     - watch:
       - file: "Hoolie apache config file"
