@@ -2,7 +2,7 @@
 
 
 # Remove packages
-"Remove all mysql libs"
+"Remove all mysql libs":
   pkg.purge:
     - pkgs:
       - mysql-libs
@@ -65,7 +65,7 @@
 
 "Install Zenoss Core with packages":
   pkg.installed:
-    - sources:
-      - zenoss_core-4.2.5: salt://zenoss/zenoss_core-4.2.5-2108.el6.x86_64.rpm
+    - source: https://s3.amazonaws.com/salt-filestore/zenoss_core-4.2.5-2108.el6.x86_64.rpm
+    - source_hash: 66850315878eaa406693d693a668bf2a-2
     - require:
       - pkg: "Install Zenoss Dep packages"
