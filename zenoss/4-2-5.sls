@@ -16,6 +16,37 @@
       - mysql-libs
       - mysql-server
       - MySQL-python
+      - libaio
+      - liberation-fonts-common
+      - liberation-mono-fonts
+      - liberation-sans-fonts
+      - liberation-serif-fonts
+      - libexslt.so.0
+      - libgcj
+      - libgomp
+      - libmysqlclient.so.18
+      - librrd.so.4
+      - libxslt
+      - libxslt.so.1
+      - memcached
+      - nagios-plugins
+      - nagios-plugins-dig
+      - nagios-plugins-dns
+      - nagios-plugins-http
+      - nagios-plugins-ircd
+      - nagios-plugins-ldap
+      - nagios-plugins-ntp
+      - nagios-plugins-perl
+      - nagios-plugins-ping
+      - nagios-plugins-rpc
+      - nagios-plugins-tcp
+      - net-snmp
+      - net-snmp-utils
+      - patch
+      - rabbitmq-server
+      - redis
+      - rrdtool
+      - sysstat
 
 "Setup mysql config file for Zenoss":
   file.managed:
