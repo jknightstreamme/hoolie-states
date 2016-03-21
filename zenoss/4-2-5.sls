@@ -38,14 +38,14 @@
     - password: ''
     - host: localhost
     - require:
-      - pkg: "Check mysql service"
+      - service: "Check mysql service"
 
 "Configure root user for mysql":
   mysql_user.present:
     - name: root
     - password: ''
     - require:
-      - pkg: "Check mysql service"
+      - service: "Check mysql service"
 
 "Disable SELinux":
   selinux.boolean:
