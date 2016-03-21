@@ -48,10 +48,12 @@
     - require:
       - service: "Check mysql service"
 
-"Disable SELinux":
-  selinux.boolean:
-    - value: False
-    - persist: True
+"Disabled SELinux":
+  file.sed:
+    - name: /etc/sysconfig/selinux
+    - before: 'enforcing'
+    - after: 'disabled'
+    - limit: '^SELINUX='
 
 "Set SELinux mode to permissive":
   selinux.mode:
