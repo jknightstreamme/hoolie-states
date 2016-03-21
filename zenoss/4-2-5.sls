@@ -3,7 +3,7 @@
 
 # Remove packages
 "Remove all mysql libs":
-  pkg.purge:
+  pkg.purged:
     - pkgs:
       - mysql-libs
 
@@ -11,7 +11,7 @@
 "Install zenoss required packages":
   pkg.installed:
     - pkgs: 
-      - openjdk
+      - java-1.6.0-openjdk
       - mysql
       - mysql-libs
       - mysql-server
