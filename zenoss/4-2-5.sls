@@ -89,6 +89,7 @@
   pkg.installed:
     - sources:
       - zenossdeps: salt://zenoss/zenossdeps-4.2.x-1.el6.noarch.rpm
+      - mysql-libs: salt://zenoss/mysql-libs-5.5.48-1.el6.remi.x86_64.rpm
     - require:
       - selinux: "Set SELinux mode to permissive"
 
