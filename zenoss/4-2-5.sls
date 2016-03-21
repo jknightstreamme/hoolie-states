@@ -15,6 +15,7 @@
       - mysql
       - mysql-libs
       - mysql-server
+      - MySQL-python
 
 "Setup mysql config file for Zenoss":
   file.managed:
