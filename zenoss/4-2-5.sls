@@ -65,10 +65,16 @@
     - require:
       - selinux: "Set SELinux mode to permissive"
 
-"Install Zenoss Core with packages":
-  pkg.installed:
-    - sources:
-      - zenoss_core-4.2.5-2108.el6.x86_64.rpm: https://s3.amazonaws.com/salt-filestore/zenoss_core-4.2.5-2108.el6.x86_64.rpm
+"Get Zenoss package":
+  file.managed:
+    - name: /tmp/zenoss_core-4.2.5-2108.el6.x86_64.rpm
+    - source: https://s3.amazonaws.com/salt-filestore/zenoss_core-4.2.5-2108.el6.x86_64.rpm
     - source_hash: 66850315878eaa406693d693a668bf2a
     - require:
       - pkg: "Install Zenoss Dep packages"
+
+"Install Zenoss Core with packages":
+  pkg.installed:
+    - source: /tmp/zenoss_core-4.2.5-2108.el6.x86_64.rpm
+    - require:
+      - file: "Get Zenoss package"
