@@ -75,6 +75,7 @@
 
 "Install Zenoss Core with packages":
   pkg.installed:
+    - name: zenoss_core-4.2.5-2108.el6.x86_64.rpm
     - source: /tmp/zenoss_core-4.2.5-2108.el6.x86_64.rpm
     - require:
       - file: "Get Zenoss package"
