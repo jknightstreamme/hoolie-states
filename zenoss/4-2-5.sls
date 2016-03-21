@@ -69,7 +69,7 @@
   file.managed:
     - name: /tmp/zenoss_core-4.2.5-2108.el6.x86_64.rpm
     - source: https://s3.amazonaws.com/salt-filestore/zenoss_core-4.2.5-2108.el6.x86_64.rpm
-    - source_hash: sha512=66850315878eaa406693d693a668bf2a
+    - source_hash: md5=66850315878eaa406693d693a668bf2a-2
     - require:
       - pkg: "Install Zenoss Dep packages"
 
