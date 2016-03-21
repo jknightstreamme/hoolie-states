@@ -30,7 +30,7 @@
     - names:
       - mysqld
     - require:
-      - pkg: "Setup mysql config file for Zenoss"
+      - file: "Setup mysql config file for Zenoss"
 
 "Configure localhost root user for mysql":
   mysql_user.present:
