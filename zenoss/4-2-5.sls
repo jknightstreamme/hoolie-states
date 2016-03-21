@@ -36,7 +36,7 @@
 "Configure localhost root user for mysql":
   mysql_user.present:
     - name: root
-    - password: ''
+    - allow_passwordless: True
     - host: localhost
     - require:
       - service: "Check mysql service"
@@ -44,7 +44,7 @@
 "Configure root user for mysql":
   mysql_user.present:
     - name: root
-    - password: ''
+    - allow_passwordless: True
     - require:
       - service: "Check mysql service"
 
