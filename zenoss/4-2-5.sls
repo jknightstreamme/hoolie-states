@@ -49,12 +49,11 @@
       - service: "Check mysql service"
 
 "Disabled SELinux":
-  file.sed:
+  file.replace:
     - name: /etc/sysconfig/selinux
-    - before: 'enforcing'
-    - after: 'disabled'
-    - limit: '^SELINUX='
-
+    - pattern: 'SELINUX=enforcing'
+    - repl: 'SELINUX=disabled'
+    
 "Set SELinux mode to permissive":
   selinux.mode:
     - name: permissive
