@@ -144,8 +144,8 @@
       - cmd: "Install Zenoss Core with packages"
 
 "Start Zenoss service":
-  service.running:
-    - name: zenoss
+  cmd.run:
+    - name: 'service zenoss start'
     - require:
       - cmd: "Reset rabbit queue"
 
