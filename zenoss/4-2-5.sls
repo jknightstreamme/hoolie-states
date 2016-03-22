@@ -107,6 +107,7 @@
     - mode: 700
   cmd.run:
     - name: /tmp/jre-6u31-linux-x64-rpm.bin
+    - unless: java -version
 
 "Install Zenoss Dep packages":
   pkg.installed:
