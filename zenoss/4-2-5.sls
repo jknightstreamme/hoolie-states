@@ -140,6 +140,7 @@
 "Start Zenoss service":
   cmd.run:
     - name: 'service zenoss start'
+    - stateful: False
     - require:
       - cmd: "Reset rabbit queue"
 
