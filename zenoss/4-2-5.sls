@@ -100,8 +100,6 @@
     - require:
       - service: "Check mysql service"
 
-
-
 "Install Zenoss oracle java":
   file.managed:
     - name: /tmp/jre-6u31-linux-x64-rpm.bin
@@ -110,8 +108,6 @@
   cmd.run:
     - name: /tmp/jre-6u31-linux-x64-rpm.bin
     - unless: java -version
-
-
 
 "Get Zenoss package":
   file.managed:
@@ -147,4 +143,9 @@
     - require:
       - cmd: "Reset rabbit queue"
 
+"Send event to bus":
+  event.send:
+    - name: zenoss/saas
+    - data:
+        status: "Everything installed for zenoss server"
 
