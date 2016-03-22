@@ -147,5 +147,6 @@
   event.send:
     - name: zenoss/saas
     - data:
-        status: "Everything installed for zenoss server"
+        event: "Everything installed for zenoss server"
+        name: "From server {{ grains['id'] }}"
 
