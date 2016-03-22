@@ -42,17 +42,18 @@
       - nagios-plugins-ping
       - nagios-plugins-rpc
       - nagios-plugins-tcp
-
-"Install second set of pacakges":
-  pkg.installed:
-    - pkgs:
       - net-snmp
       - net-snmp-utils
       - patch
       - rabbitmq-server
       - redis
-      - rrdtool
       - sysstat
+
+"Install second set of pacakges":
+  pkg.installed:
+    - pkgs:
+      - rrdtool
+
     - require:
       - pkg: "Install zenoss required packages"
 
