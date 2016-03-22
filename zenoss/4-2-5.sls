@@ -7,11 +7,17 @@
     - pkgs:
       - mysql-libs
 
+# Turn off firewall
+"Firewall disabled":
+  service.dead:
+    - name: iptables
+    - enable: False
+
+
 # Install support packages
 "Install zenoss required packages":
   pkg.installed:
     - pkgs: 
-      - java-1.6.0-openjdk
       - mysql
       - mysql-libs
       - mysql-server
@@ -84,6 +90,14 @@
 "Set SELinux mode to permissive":
   selinux.mode:
     - name: permissive
+
+"Install Zenoss oracle java":
+  file.managed:
+    - name: /tmp/jre-6u31-linux-x64-rpm.bin
+    - source: salt://zenoss/jre-6u31-linux-x64-rpm.bin
+    - mode: 700
+  cmd.run:
+    - name: /tmp/jre-6u31-linux-x64-rpm.bin
 
 "Install Zenoss Dep packages":
   pkg.installed:
