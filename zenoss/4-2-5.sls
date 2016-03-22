@@ -121,7 +121,7 @@
 "Install Zenoss Core with packages":
   cmd.run:
     - name: 'rpm -Uvh /tmp/zenoss_core-4.2.5-2108.el6.x86_64.rpm'
-    - creates: /zenossinstalled
+    - unless: service zenoss status
     - require:
       - file: "Get Zenoss package"
       - pkg: "Install zenoss required packages"
