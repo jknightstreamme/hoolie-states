@@ -137,10 +137,16 @@
     - require:
       - cmd: "Install Zenoss Core with packages"
 
+"Reset rabbit queue":
+  cmd.script:
+    - source: salt://zenoss/resetrabbit.sh
+    - watch:
+      - cmd: "Install Zenoss Core with packages"
+
 "Start Zenoss service":
   service.running:
     - name: zenoss
     - require:
-      - file: "Remove startup file for zenpacks"
+      - cmd: "Reset rabbit queue"
 
 
