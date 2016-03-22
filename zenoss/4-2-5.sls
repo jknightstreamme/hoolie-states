@@ -19,7 +19,7 @@
 
 # Install support packages
 "Install zenoss required packages":
-  pkg.installed:
+  pkg.latest:
     - refresh: True
     - pkgs: 
       - mysql
