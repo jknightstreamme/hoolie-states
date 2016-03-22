@@ -17,6 +17,7 @@
 # Install support packages
 "Install zenoss required packages":
   pkg.installed:
+    - refresh: True
     - pkgs: 
       - mysql
       - mysql-libs
@@ -49,7 +50,7 @@
       - redis
       - sysstat
       - rrdtool
-    - refresh: True
+
 
 "Setup mysql config file for Zenoss":
   file.managed:
