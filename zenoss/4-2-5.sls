@@ -42,6 +42,10 @@
       - nagios-plugins-ping
       - nagios-plugins-rpc
       - nagios-plugins-tcp
+
+"Install second set of pacakges":
+  pkg.installed:
+    - pkgs:
       - net-snmp
       - net-snmp-utils
       - patch
@@ -49,6 +53,8 @@
       - redis
       - rrdtool
       - sysstat
+    - require:
+      - pkg: "Install zenoss required packages"
 
 "Setup mysql config file for Zenoss":
   file.managed:
@@ -121,10 +127,16 @@
     - name: 'rpm -Uvh /tmp/zenoss_core-4.2.5-2108.el6.x86_64.rpm'
     - require:
       - file: "Get Zenoss package"
-      - pkg: "Install zenoss required packages"
+      - pkg: "Install second set of pacakges"
+
+"Remove startup file for zenpacks":
+  file.mission:
+    - name: /opt/zenoss/var/zenpack_actions.txt
+    - require:
+      - cmd: "Install second set of pacakges"
 
 "Start Zenoss service":
   service.running:
     - name: zenoss
     - require:
-      - cmd: "Install Zenoss Core with packages"
+      - file: "Remove startup file for zenpacks"
