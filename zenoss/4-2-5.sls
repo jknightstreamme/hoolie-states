@@ -13,6 +13,11 @@
     - name: iptables
     - enable: False
 
+"Hack for rrdtool install":
+  pkg.install:
+    - name: rrdtool
+    - version: 1.4.7
+    - refresh: True
 
 # Install support packages
 "Install zenoss required packages":
@@ -50,7 +55,8 @@
       - redis
       - sysstat
       - rrdtool
-
+    - require:
+      - pkg: "Hack for rrdtool install"
 
 "Setup mysql config file for Zenoss":
   file.managed:
@@ -137,3 +143,5 @@
     - name: zenoss
     - require:
       - file: "Remove startup file for zenpacks"
+
+
