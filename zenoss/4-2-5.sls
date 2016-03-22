@@ -128,7 +128,7 @@
   file.mission:
     - name: /opt/zenoss/var/zenpack_actions.txt
     - require:
-      - cmd: "Install zenoss required packages"
+      - cmd: "Install Zenoss Core with packages"
 
 "Start Zenoss service":
   service.running:
