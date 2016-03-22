@@ -122,7 +122,7 @@
     - name: 'rpm -Uvh /tmp/zenoss_core-4.2.5-2108.el6.x86_64.rpm'
     - require:
       - file: "Get Zenoss package"
-      - pkg: "Install second set of pacakges"
+      - pkg: "Install zenoss required packages"
 
 "Remove startup file for zenpacks":
   file.mission:
