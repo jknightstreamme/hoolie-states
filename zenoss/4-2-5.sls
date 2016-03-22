@@ -63,6 +63,7 @@
   service.running:
     - names:
       - mysqld
+      - rabbitmq-server
     - require:
       - file: "Setup mysql config file for Zenoss"
 
@@ -116,8 +117,13 @@
       - pkg: "Install Zenoss Dep packages"
 
 "Install Zenoss Core with packages":
-  pkg.installed:
-    - sources: 
-      - zenoss_core-4.2.5-2108.el6.x86_64: /tmp/zenoss_core-4.2.5-2108.el6.x86_64.rpm
+  cmd.run:
+    - name: 'rpm -Uvh /tmp/zenoss_core-4.2.5-2108.el6.x86_64.rpm'
     - require:
       - file: "Get Zenoss package"
+
+"Start Zenoss service":
+  service.running:
+    - name: zenoss
+    - require:
+      - cmd: "Install Zenoss Core with packages"
