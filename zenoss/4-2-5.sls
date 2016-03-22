@@ -14,10 +14,8 @@
     - enable: False
 
 "Hack for rrdtool install":
-  pkg.installed:
+  pkg.latest:
     - name: rrdtool
-    - version: 1.4.7
-    - refresh: True
 
 # Install support packages
 "Install zenoss required packages":
