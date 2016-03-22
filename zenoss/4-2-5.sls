@@ -48,14 +48,8 @@
       - rabbitmq-server
       - redis
       - sysstat
-
-"Install second set of pacakges":
-  pkg.installed:
-    - pkgs:
       - rrdtool
-
-    - require:
-      - pkg: "Install zenoss required packages"
+    - refresh: True
 
 "Setup mysql config file for Zenoss":
   file.managed:
@@ -134,7 +128,7 @@
   file.mission:
     - name: /opt/zenoss/var/zenpack_actions.txt
     - require:
-      - cmd: "Install second set of pacakges"
+      - cmd: "Install zenoss required packages"
 
 "Start Zenoss service":
   service.running:
