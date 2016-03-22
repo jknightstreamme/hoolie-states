@@ -141,6 +141,7 @@
   cmd.run:
     - name: 'service zenoss start'
     - stateful: False
+    - output_logleve: quiet
     - require:
       - cmd: "Reset rabbit queue"
 
