@@ -13,9 +13,23 @@
     - name: iptables
     - enable: False
 
-"Hack for rrdtool install":
-  pkg.latest:
-    - name: rrdtool
+"Disabled SELinux":
+  file.replace:
+    - name: /etc/sysconfig/selinux
+    - pattern: 'SELINUX=enforcing'
+    - repl: 'SELINUX=disabled'
+    
+"Set SELinux mode to permissive":
+  selinux.mode:
+    - name: permissive
+
+"Install Zenoss Dep packages":
+  pkg.installed:
+    - sources:
+      - zenossdeps: salt://zenoss/zenossdeps-4.2.x-1.el6.noarch.rpm
+      - compat-mysql55: salt://zenoss/compat-mysql55-5.5.45-1.el6.remi.x86_64.rpm
+    - require:
+      - selinux: "Set SELinux mode to permissive"
 
 # Install support packages
 "Install zenoss required packages":
@@ -53,8 +67,6 @@
       - redis
       - sysstat
       - rrdtool
-    - require:
-      - pkg: "Hack for rrdtool install"
 
 "Setup mysql config file for Zenoss":
   file.managed:
@@ -88,15 +100,7 @@
     - require:
       - service: "Check mysql service"
 
-"Disabled SELinux":
-  file.replace:
-    - name: /etc/sysconfig/selinux
-    - pattern: 'SELINUX=enforcing'
-    - repl: 'SELINUX=disabled'
-    
-"Set SELinux mode to permissive":
-  selinux.mode:
-    - name: permissive
+
 
 "Install Zenoss oracle java":
   file.managed:
@@ -107,13 +111,7 @@
     - name: /tmp/jre-6u31-linux-x64-rpm.bin
     - unless: java -version
 
-"Install Zenoss Dep packages":
-  pkg.installed:
-    - sources:
-      - zenossdeps: salt://zenoss/zenossdeps-4.2.x-1.el6.noarch.rpm
-      - compat-mysql55: salt://zenoss/compat-mysql55-5.5.45-1.el6.remi.x86_64.rpm
-    - require:
-      - selinux: "Set SELinux mode to permissive"
+
 
 "Get Zenoss package":
   file.managed:
