@@ -14,7 +14,7 @@
     - enable: False
 
 "Hack for rrdtool install":
-  pkg.install:
+  pkg.installed:
     - name: rrdtool
     - version: 1.4.7
     - refresh: True
