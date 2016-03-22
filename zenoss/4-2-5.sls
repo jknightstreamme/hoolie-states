@@ -126,7 +126,7 @@
       - pkg: "Install zenoss required packages"
 
 "Remove startup file for zenpacks":
-  file.mission:
+  file.missing:
     - name: /opt/zenoss/var/zenpack_actions.txt
     - require:
       - cmd: "Install Zenoss Core with packages"
