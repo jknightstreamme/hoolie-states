@@ -29,6 +29,7 @@ try:
 except ImportError:
     HAS_LIBS = False
 
+log = logging.getLogger(__name__)
 
 ROUTERS = {'MessagingRouter': 'messaging',
            'EventsRouter': 'evconsole',
@@ -85,14 +86,6 @@ def _router_request(router, method, data=None):
     return json.loads(response.content).get('result', None)
 
 
-def _determine_device_class():
-    '''
-    If no device class is given when adding a device, this helps determine
-    '''
-    if __salt__['grains.get']('kernel') == 'Linux':
-        return '/Server/Linux'
-
-
 def __virtual__():
     '''
     Only load if requests is installed
@@ -106,23 +99,23 @@ def find_device(device=None):
     Find a device in Zenoss. If device not found, returns None.
 
     Parameters:
-        device:         (Optional) Will use the grain 'fqdn' by default
+        device:         (Required) The device name in Zenoss
 
     CLI Example:
-        salt '*' zenoss.find_device
+        salt-run zenoss.find_device device=saltmaster
     '''
 
     data = [{'uid': '/zport/dmd/Devices', 'params': {}, 'limit': None}]
     all_devices = _router_request('DeviceRouter', 'getDevices', data=data)
     for dev in all_devices['devices']:
         if dev['name'] == device:
-            # We need to save the has for later operations
+            # We need to save the hash for later operations
             dev['hash'] = all_devices['hash']
             log.info('Found device %s in Zenoss', device)
             return dev
 
     log.info('Unable to find device %s in Zenoss', device)
-    return None
+    return False
 
 
 def device_exists(device=None):
@@ -130,15 +123,11 @@ def device_exists(device=None):
     Check to see if a device already exists in Zenoss.
 
     Parameters:
-        device:         (Optional) Will use the grain 'fqdn' by default
+        device:         (Required) The device name in Zenoss
 
     CLI Example:
-        salt '*' zenoss.device_exists
+        salt-run zenoss.device_exists device=saltmaster
     '''
-
-    if not device:
-        device = __salt__['grains.get']('fqdn')
-
     if find_device(device):
         return True
     return False
@@ -149,20 +138,15 @@ def add_device(device=None, device_class=None, collector='localhost', prod_state
     A function to connect to a zenoss server and add a new device entry.
 
     Parameters:
-        device:         (Optional) Will use the grain 'fqdn' by default.
-        device_class:   (Optional) The device class to use. If none, will determine based on kernel grain.
+        device:         (Required) The device name in Zenoss
+        device_class:   (Required) The device class to use. If none, will determine based on kernel grain.
         collector:      (Optional) The collector to use for this device. Defaults to 'localhost'.
         prod_state:     (Optional) The prodState to set on the device. If none, defaults to 1000 ( production )
 
     CLI Example:
-        salt '*' zenoss.add_device
+        salt-run zenoss.add_device device=saltmaster device_class='/Server/Linux'
     '''
 
-    if not device:
-        device = __salt__['grains.get']('fqdn')
-
-    if not device_class:
-        device_class = _determine_device_class()
     log.info('Adding device %s to zenoss', device)
     data = dict(deviceName=device, deviceClass=device_class, model=True, collector=collector, productionState=prod_state)
     response = _router_request('DeviceRouter', 'addDevice', data=[data])
@@ -175,14 +159,11 @@ def set_prod_state(prod_state, device=None):
 
     Parameters:
         prod_state:     (Required) Integer value of the state
-        device:         (Optional) Will use the grain 'fqdn' by default.
+        device:         (Required) The device name in Zenoss
 
     CLI Example:
-        salt zenoss.set_prod_state 1000 hostname
+        salt-run zenoss.set_prod_state prod_state=1000 device=saltmaster
     '''
-
-    if not device:
-        device = __salt__['grains.get']('fqdn')
 
     device_object = find_device(device)
 
