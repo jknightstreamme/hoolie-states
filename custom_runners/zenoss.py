@@ -219,8 +219,24 @@ def get_decomm():
 
 def send_event(summary, device, severity, evclasskey=None, evclass=None, component=None):
     '''
-    required  summary, device, severity
+    A function to send events to Zenoss
 
+    Parameters:
+        summary:        (Required) The summary of the event
+        device:         (Required) The device name in Zenoss
+        severity:       (Required) String value of the state
+                        - Critical
+                        - Error
+                        - Warning
+                        - Info
+                        - Debug
+                        - Clear
+        evclasskey:     (optional) The Event class key from Zenoss
+        evclass:        (optional) The Event class for the event
+        component:      (optional) The component on the device this message refers to
+
+    CLI Example:
+        salt-run zenoss.send_event summary='Config just executed' device=saltmaster severity='Info'
     '''
 
     data = [{
