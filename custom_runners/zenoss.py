@@ -398,11 +398,11 @@ def update_password(username, password):
 
     data = []
     data.append('roles:list=ZenUser')
-    data.append('email=mywebtest2@saltstack.com')
-    data.append('pager=')
-    data.append('defaultPageSize=40')
-    data.append('defaultAdminRole=ZenUser')
-    data.append('netMapStartObject=')
+    #data.append('email=mywebtest2@saltstack.com')
+    #data.append('pager=')
+    #data.append('defaultPageSize=40')
+    #data.append('defaultAdminRole=ZenUser')
+    #data.append('netMapStartObject=')
     data.append('password=' + password)
     data.append('sndpassword=' + password)
     data.append('oldpassword=' + config.get('password'))
