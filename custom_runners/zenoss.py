@@ -71,6 +71,44 @@ def _session():
     return session
 
 
+def _http_get(page, data=None):
+    '''
+    Make a normal http get to Zenoss
+    '''
+
+    config = __opts__.get('zenoss', None)
+
+    if config is None:
+        log.debug('No zenoss configurations found in master config')
+        return False
+    else:
+        url = '{0}/zport/dmd/{1}?{2}'.format(config.get('hostname'),
+                                             page,
+                                             data)
+        response = _session().get(url)
+
+    return response.ok
+
+
+def _http_post(page, data=None):
+    '''
+    Make a normal http post to Zenoss
+    '''
+
+    config = __opts__.get('zenoss', None)
+
+    if config is None:
+        log.debug('No zenoss configurations found in master config')
+        return False
+    else:
+        url = '{0}/zport/dmd/{1}'.format(config.get('hostname'),
+                                         page)
+        data = json.dumps(data)
+        response = _session().post(url, data)
+
+    return response.ok
+
+
 def _router_request(router, method, data=None):
     '''
     Make a request to the Zenoss API router
@@ -143,22 +181,99 @@ def device_exists(device=None):
     return False
 
 
-def add_device(device=None, device_class=None, collector='localhost', prod_state='Production'):
+def add_device(deviceName,
+               deviceClass,
+               title=None,
+               snmpCommunity='',
+               snmpPort=161,
+               manageIp="",
+               model=False,
+               collector='localhost',
+               rackSlot=0,
+               locationPath="",
+               systemPaths=[],
+               groupPaths=[],
+               prod_state='Production',
+               comments="",
+               hwManufacturer="",
+               hwProductName="",
+               osManufacturer="",
+               osProductName="",
+               priority=3,
+               tag="",
+               serialNumber="",
+               zCommandUsername="",
+               zCommandPassword="",
+               zWinUser="",
+               zWinPassword="",
+               zProperties={},
+               cProperties={}):
     '''
     A function to connect to a zenoss server and add a new device entry.
 
     Parameters:
-        device:         (Required) The device name in Zenoss
-        device_class:   (Required) The device class to use. If none, will determine based on kernel grain.
-        collector:      (Optional) The collector to use for this device. Defaults to 'localhost'.
-        prod_state:     (Optional) The prodState to set on the device. If none, defaults to Production
+        deviceName:     (Required) The device name in Zenoss
+        deviceClass:    (Required) The device class to use. If none, will determine based on kernel grain.
+        prod_state:     (Optional)(Default Production) The prodState to set on the device.
+        title:          (Optional) See Zenoss documentation
+        snmpCommunity:  (Optional) See Zenoss documentation
+        snmpPort:       (Optional) See Zenoss documentation
+        manageIp:       (Optional) See Zenoss documentation
+        model:          (Optional) See Zenoss documentation
+        collector:      (Optional)(Default localhost) The collector to use for this device.
+        rackSlot:       (Optional) See Zenoss documentation
+        locationPath:   (Optional) See Zenoss documentation
+        systemPaths:    (Optional) See Zenoss documentation
+        groupPaths:     (Optional) See Zenoss documentation
+        prod_state:     (Optional) See Zenoss documentation
+        comments:       (Optional) See Zenoss documentation
+        hwManufacturer: (Optional) See Zenoss documentation
+        hwProductName:  (Optional) See Zenoss documentation
+        osManufacturer: (Optional) See Zenoss documentation
+        osProductName:  (Optional) See Zenoss documentation
+        priority:       (Optional) See Zenoss documentation
+        tag:            (Optional) See Zenoss documentation
+        serialNumber:   (Optional) See Zenoss documentation
+        zCommandUsername: (Optional) See Zenoss documentation
+        zCommandPassword: (Optional) See Zenoss documentation
+        zWinUser:       (Optional) See Zenoss documentation
+        zWinPassword:   (Optional) See Zenoss documentation
+        zProperties:    (Optional) See Zenoss documentation
+        cProperties:    (Optional) See Zenoss documentation
 
     CLI Example:
         salt-run zenoss.add_device device=saltmaster device_class='/Server/Linux'
     '''
 
-    log.info('Adding device %s to zenoss', device)
-    data = dict(deviceName=device, deviceClass=device_class, model=True, collector=collector, productionState=PROD_STATES[prod_state])
+    log.info('Adding device %s to zenoss', deviceName)
+    data = dict(deviceName=deviceName,
+                deviceClass=deviceClass,
+                title=title,
+                snmpCommunity=snmpCommunity,
+                snmpPort=snmpPort,
+                manageIp=manageIp,
+                model=model,
+                collector=collector,
+                rackSlot=rackSlot,
+                locationPath=locationPath,
+                systemPaths=systemPaths,
+                groupPaths=groupPaths,
+                productionState=PROD_STATES[prod_state],
+                comments=comments,
+                hwManufacturer=hwManufacturer,
+                hwProductName=hwProductName,
+                osManufacturer=osManufacturer,
+                osProductName=osProductName,
+                priority=priority,
+                tag=tag,
+                serialNumber=serialNumber,
+                zCommandUsername=zCommandUsername,
+                zCommandPassword=zCommandPassword,
+                zWinUser=zWinUser,
+                zWinPassword=zWinPassword,
+                zProperties=zProperties,
+                cProperties=cProperties)
+
     response = _router_request('DeviceRouter', 'addDevice', data=[data])
     return response
 
@@ -249,3 +364,52 @@ def send_event(summary, device, severity, evclasskey=None, evclass=None, compone
     ret = _router_request('EventsRouter', 'add_event', data=data)
 
     return ret
+
+
+def add_user(username, email):
+
+    data = []
+    data.append('tableName=userlist')
+    data.append('zenScreenName=manageUserFolder.pt')
+    data.append('filter=""')
+    data.append('userid=' + username)
+    data.append('email=' + email)
+    data.append('manage_addUser:method=OK')
+
+    data = '&'.join(data)
+    ret = _http_get('ZenUsers', data=data)
+
+    return ret
+
+
+def reset_password(username):
+
+    data = []
+    data.append('manage_resetPassword:method=Submit')
+
+    ret = _http_post('ZenUsers/' + username, data=data)
+
+    return ret
+
+
+def update_password(username, password):
+
+    config = __opts__.get('zenoss', None)
+
+    data = []
+    data.append('roles:list=ZenUser')
+    data.append('email=mywebtest2@saltstack.com')
+    data.append('pager=')
+    data.append('defaultPageSize=40')
+    data.append('defaultAdminRole=ZenUser')
+    data.append('netMapStartObject=')
+    data.append('password=' + password)
+    data.append('sndpassword=' + password)
+    data.append('oldpassword=' + config.get('password'))
+    data.append('manage_editUserSettings:method=+Save+Settings+')
+
+    data = '&'.join(data)
+    ret = _http_get('ZenUsers/' + username, data=data)
+
+    return ret
+
