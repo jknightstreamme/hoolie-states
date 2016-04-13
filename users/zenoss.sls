@@ -27,6 +27,6 @@
   ssh_auth.present:
     - user: zenoss
     - source: salt://ssh_keys/zenoss.id_rsa.pub
-    - config: %h/.ssh/authorized_keys
+    - config: '%h/.ssh/authorized_keys'
     - require:
       - user: zenoss
