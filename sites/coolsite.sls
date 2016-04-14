@@ -32,6 +32,7 @@ include:
     - target: {{ workingdir }}
     - rev: {{ env }}
     - identity: /root/.ssh/{{ sshkey }}.priv
+    - force_reset: True
     - force_checkout: True
     - require:
         - pkg: 'GIT software'
