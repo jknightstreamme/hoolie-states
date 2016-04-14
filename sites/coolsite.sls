@@ -31,7 +31,6 @@ include:
     - name: git@github.com:trebortech/ACME.git
     - target: {{ workingdir }}
     - rev: {{ env }}
-    - branch: {{ env }}
     - identity: /root/.ssh/{{ sshkey }}.priv
     - force_checkout: True
     - require:
