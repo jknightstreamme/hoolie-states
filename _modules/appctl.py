@@ -28,4 +28,5 @@ def deploy(appname, newversion):
         pillar=pil
         )
 
+    ret = "{0} has been updated to version {1}".format(appname, newversion)
     return ret
