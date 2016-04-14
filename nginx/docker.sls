@@ -1,5 +1,8 @@
 
 
+include:
+  - docker
+
 "Download corp image":
   dockerng.image_present:
     - name: 'saltme/nginx:0.6'
