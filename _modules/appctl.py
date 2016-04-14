@@ -29,7 +29,7 @@ def deploy(appname, newversion):
     inmaint = {"prod_state": "Maintenance"}
 
     __salt__['event.fire_master'](
-        data=inmaint
+        data=inmaint,
         tag=zenosstag
         )
 
@@ -43,7 +43,7 @@ def deploy(appname, newversion):
     zenosseventtag = '/zenoss/event'
     zenossevent = {"message": appname + " was updated to version " + newversion}
     __salt__['event.fire_master'](
-        data=zenossevent
+        data=zenossevent,
         tag=zenosseventtag
         )
 
@@ -52,7 +52,7 @@ def deploy(appname, newversion):
     outmaint = {"prod_state": __grains__['prod_state']}
 
     __salt__['event.fire_master'](
-        data=outmaint
+        data=outmaint,
         tag=zenosstag
         )
 
