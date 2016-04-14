@@ -245,6 +245,9 @@ def add_device(deviceName,
         salt-run zenoss.add_device device=saltmaster device_class='/Server/Linux'
     '''
 
+    if device_exists(deviceName):
+        return 'Device already exists'
+
     log.info('Adding device %s to zenoss', deviceName)
     data = dict(deviceName=deviceName,
                 deviceClass=deviceClass,
