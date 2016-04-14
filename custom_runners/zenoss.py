@@ -412,4 +412,3 @@ def update_password(username, password):
     ret = _http_get('ZenUsers/' + username, data=data)
 
     return ret
-
