@@ -119,6 +119,7 @@ def start(token,
                         _text = _m.get('text', None) or _m.get('message', {}).get('text', None)
                         if _text:
                             if _text.startswith('!') and control:
+
                                 # Ensure the user is allowed to run commands
                                 if valid_users:
                                     log.debug('{0} {1}'.format(all_users, _m['user']))
@@ -133,6 +134,13 @@ def start(token,
                                 cmd = cmdline[0]
                                 args = []
                                 kwargs = {}
+
+                                if cmd == 'help':
+                                    channel.send_message("Valid commands")
+                                    channel.send_message(" -- ".join(valid_commands))
+                                    channel.send_message("Available Aliases")
+                                    channel.send_message(" -- ".join(aliases.keys()))
+                                    return
 
                                 # Ensure the command is allowed
                                 if valid_commands:
