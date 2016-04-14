@@ -13,6 +13,8 @@
 #
 ###############################
 
+include:
+  - pip
 
 {% if grains['os_family'] == 'RedHat' %}
 {% set repo = 'main' %}
