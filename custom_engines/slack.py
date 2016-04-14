@@ -119,7 +119,6 @@ def start(token,
                         _text = _m.get('text', None) or _m.get('message', {}).get('text', None)
                         if _text:
                             if _text.startswith('!') and control:
-
                                 # Ensure the user is allowed to run commands
                                 if valid_users:
                                     log.debug('{0} {1}'.format(all_users, _m['user']))
