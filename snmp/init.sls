@@ -20,4 +20,4 @@
   service.running:
     - name: snmpd
     - watch:
-      - pkg: "Configured SNMP conf file"
+      - file: "Configured SNMP conf file"
