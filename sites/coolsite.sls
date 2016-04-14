@@ -5,8 +5,13 @@ include:
   - git
 
 {% set workingdir = "/demo/web/site1" %}
-{% set sshkey = "ssh-key-acme" %}
-{% set env = grains.get('branch', 'dev') %}
+{% set sshkey = "acme-site-demo" %}
+
+{% if pillar.get('version') is defined %}
+{% set env = pillar['version'] %}
+{% else %}
+{% set env = grains.get('version', 'dev') %}
+{% endif %}
 
 ####### STAGE KEYS #####################
 

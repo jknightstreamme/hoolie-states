@@ -187,7 +187,7 @@ def add_device(deviceName,
                snmpCommunity='',
                snmpPort=161,
                manageIp="",
-               model=False,
+               model=True,
                collector='localhost',
                rackSlot=0,
                locationPath="",
@@ -242,7 +242,7 @@ def add_device(deviceName,
         cProperties:    (Optional) See Zenoss documentation
 
     CLI Example:
-        salt-run zenoss.add_device device=saltmaster device_class='/Server/Linux'
+        salt-run zenoss.add_device deviceName=saltmaster deviceClass='/Server/Linux'
     '''
 
     if device_exists(deviceName):

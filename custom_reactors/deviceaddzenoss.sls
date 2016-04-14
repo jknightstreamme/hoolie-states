@@ -1,9 +1,9 @@
-{% if data['deviceclass'] is defined %}
+{% if data['data']['deviceclass'] is defined %}
 
-{% set deviceclass = data['deviceclass']
-{% set devicename = data['devicename']
-{% set serialnumber = data['serialnumber']
-{% set title = data['title']
+{% set deviceclass = data['data']['deviceclass'] %}
+{% set devicename = data['data']['devicename'][0] %}
+{% set serialnumber = data['data']['serialnumber'] %}
+{% set title = data['data']['title'] %}
 
 {% endif %}
 
@@ -13,4 +13,4 @@
         deviceName: {{ devicename }}
         deviceClass: {{ deviceclass }}
         title: {{ title }}
-        serialnumber: {{ serialnumber }}
+        serialNumber: {{ serialnumber }}

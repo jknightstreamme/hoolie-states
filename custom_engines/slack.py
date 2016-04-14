@@ -129,6 +129,7 @@ def start(token,
                                 # Trim the ! from the front
                                 # cmdline = _text[1:].split(' ', 1)
                                 cmdline = salt.utils.shlex_split(_text[1:])
+                                log.debug('command line: ' + ' -- '.join(cmdline))
                                 cmd = cmdline[0]
                                 args = []
                                 kwargs = {}
