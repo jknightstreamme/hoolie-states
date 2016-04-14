@@ -19,11 +19,11 @@ def __virtual__():
     return __virtualname__
 
 
-def deploy(appname, version):
+def deploy(appname, newversion):
 
     ret = __salt__['state.sls'](
         mods='sites.{0}'.format(appname),
-        pillar='{"version":"{0}"}'.format(version)
+        pillar='{"version":"{0}"}'.format(newversion)
         )
 
     return ret
