@@ -25,7 +25,7 @@ def deploy(appname, newversion):
 
     # put into Maintenance mode
 
-    zenosstag = '/zenoss/prodstate/set'
+    zenosstag = 'zenoss/prodstate/set'
     inmaint = {"prod_state": "Maintenance"}
 
     __salt__['event.fire_master'](
@@ -40,7 +40,7 @@ def deploy(appname, newversion):
 
     # Log message to Zenoss that software was updated
 
-    zenosseventtag = '/zenoss/event'
+    zenosseventtag = 'zenoss/event'
     zenossevent = {"message": appname + " was updated to version " + newversion}
     __salt__['event.fire_master'](
         data=zenossevent,
