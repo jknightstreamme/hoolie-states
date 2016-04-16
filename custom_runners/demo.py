@@ -5,7 +5,7 @@ Runner for demo code
 from __future__ import absolute_import
 
 import logging
-import salt.runners.lambda
+import salt.runners.lambda_events
 import salt.client
 
 
@@ -16,7 +16,7 @@ def __virtual__():
 def giphyget(keyword):
 
     # get giphy
-    ret = salt.runners.lambda.giphyget(keyword)
+    ret = salt.runners.lambda_events.giphyget(keyword)
 
     # update web pages
 

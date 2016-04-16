@@ -15,19 +15,21 @@ log = logging.getLogger(__name__)
 
 
 def __virtual__():
-    return 'lambda'
+    return 'lambda_events'
 
 
 def _get_lambda_host():
     # Get a list of available docker hosts from salt-mine
     # Randomly select one of them
- 
+
     # Search for all nodes with grain lambda = True
 
-    tgt='lambda:True'
-    expr_form='grain'
+    tgt = 'lambda:True'
+    expr_form = 'grain'
 
-    pillar_util = salt.utils.master.MasterPillarUtil(tgt, expr_form,
+    pillar_util = salt.utils.master.MasterPillarUtil(
+        tgt,
+        expr_form,
         use_cached_grains=True,
         grains_fallback=False,
         opts=__opts__)
@@ -39,7 +41,7 @@ def _get_lambda_host():
 
 
 def giphyget(keyword):
-  
+
     lambdahost = _get_lambda_host()
     args = []
     salt_cmd = 'cmd.run'
