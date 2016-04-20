@@ -13,8 +13,6 @@
 nginx:
   pkg:
     - installed
-    - version: 
-    - source: salt://
   service:
     - running
     - require:
@@ -22,7 +20,7 @@ nginx:
 
 /usr/share/nginx/html/:
   file.recurse:
-    - source: salt://website/SaltConf16
+    - source: salt://sites/SaltConf16
     - template: jinja
     - include_empty: True
     - defaults:
