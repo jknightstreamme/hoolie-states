@@ -4,7 +4,7 @@
 include:
   - git
 
-{% set workingdir = "/usr/share/nginx/html" %}
+{% set workingdir = "/demo/web/site1" %}
 {% set sshkey = "acme-site-demo" %}
 
 {% if pillar.get('version') is defined %}
