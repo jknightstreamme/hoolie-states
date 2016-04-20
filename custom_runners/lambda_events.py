@@ -66,9 +66,10 @@ def update_giphy(keyword):
     tgt = 'saltconf:True'
     expr_form = 'grain'
 
-    args = ('updatewebpage')
+    arg = ['updatewebpage']
     kwarg = {"pillar": ret}
-    local = salt.client.get_local_client(__opts__['conf_file'])
-    cmdret = local.cmd(tgt, expr_form, fun, args, kwarg)
+    local = salt.client.LocalClient()
+    #local = salt.client.get_local_client(__opts__['conf_file'])
+    cmdret = local.cmd(tgt, expr_form, fun, arg, kwarg)
 
     return True
