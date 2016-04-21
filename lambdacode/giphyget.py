@@ -8,7 +8,7 @@ def getgif(giphy):
     '''
     Create a session to giphy
     '''
-    url = "{0}search?q={1}&api_key={2}".format(hostid, giphy, apikey)
+    url = "{0}search?q={1}&api_key={2}&rating=pg&offset=2".format(hostid, giphy, apikey)
     session = requests.session()
     response = session.get(url)
     gifurl = response.json()['data'][0]['images']['original']['url']
