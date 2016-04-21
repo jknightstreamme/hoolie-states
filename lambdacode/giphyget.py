@@ -10,7 +10,7 @@ def getgif(giphy):
     '''
     Create a session to giphy
     '''
-    getme = giphy.split()[0]
+    getme = giphy[0].split()[0]
     url = "{0}search?q={1}&api_key={2}&rating=pg&offset=2".format(hostid, getme, apikey)
     session = requests.session()
     response = session.get(url)
