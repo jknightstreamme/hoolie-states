@@ -1,17 +1,21 @@
 import requests
 import sys
+import random
 
 apikey = 'dc6zaTOxFJmzC'
 hostid = 'http://api.giphy.com/v1/gifs/'
+
 
 def getgif(giphy):
     '''
     Create a session to giphy
     '''
-    url = "{0}search?q={1}&api_key={2}&rating=pg&offset=2".format(hostid, giphy, apikey)
+    getme = giphy.split()[0]
+    url = "{0}search?q={1}&api_key={2}&rating=pg&offset=2".format(hostid, getme, apikey)
     session = requests.session()
     response = session.get(url)
-    gifurl = response.json()['data'][0]['images']['original']['url']
+    pullimg = random.choice(response.json()['data'])
+    gifurl = pullimg['images']['original']['url']
     return gifurl
 
 
