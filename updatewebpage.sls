@@ -4,7 +4,7 @@
 {% if lambdahost == 'docker-aws1' %}
 /usr/share/nginx/html/aws.html:
   file.recurse:
-    - source: salt://sites/saltconf16/aws.html
+    - source: salt://sites/SaltConf16/aws.html
     - template: jinja
     - defaults:
         aws_gif: {{ url }}
@@ -12,7 +12,7 @@
 {% elif lambdahost == 'docker-linode1' %}
 /usr/share/nginx/html/linode.html:
   file.recurse:
-    - source: salt://sites/saltconf16/linode.html
+    - source: salt://sites/SaltConf16/linode.html
     - template: jinja
     - defaults:
         linode_gif: {{ url }}
@@ -20,7 +20,7 @@
 {% elif lambdahost == 'docker-linode1' %}
 /usr/share/nginx/html/local.html:
   file.recurse:
-    - source: salt://sites/saltconf16/local.html
+    - source: salt://sites/SaltConf16/local.html
     - template: jinja
     - defaults:
         local_gif: {{ url }}
