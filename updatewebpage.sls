@@ -3,7 +3,7 @@
 {% set lambdahost = salt['pillar.get']('lambdahost', 'docker-aws1') %}
 {% if lambdahost == 'docker-aws1' %}
 /usr/share/nginx/html/aws.html:
-  file.manage:
+  file.managed:
     - source: salt://sites/SaltConf16/aws.html
     - template: jinja
     - defaults:
@@ -11,7 +11,7 @@
         aws_keyword: {{ keyword }}
 {% elif lambdahost == 'docker-linode1' %}
 /usr/share/nginx/html/linode.html:
-  file.manage:
+  file.managed:
     - source: salt://sites/SaltConf16/linode.html
     - template: jinja
     - defaults:
@@ -19,7 +19,7 @@
         linode_keyword: {{ keyword }}
 {% elif lambdahost == 'docker-linode1' %}
 /usr/share/nginx/html/local.html:
-  file.manage:
+  file.managed:
     - source: salt://sites/SaltConf16/local.html
     - template: jinja
     - defaults:
