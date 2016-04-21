@@ -1,7 +1,10 @@
 {% set url = pillar.get('url', 'http://i.giphy.com/FB7yASVBqPiFy.gif') %}
 {% set keyword = pillar.get('keyword', 'Kickasdf Minion') %}
 {% set lambdahost = pillar.get('lambdahost', 'docker-aws1') %}
+
 {% set keyword = 'test' %}
+
+
 {% if lambdahost == 'docker-aws1' %}
 /usr/share/nginx/html/aws.html:
   file.managed:
