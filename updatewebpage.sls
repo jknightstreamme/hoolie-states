@@ -11,14 +11,14 @@
     - source: salt://sites/SaltConf16/aws.html
     - template: jinja
     - defaults:
-        aws_gif: {{ url }}
-        aws_keyword: {{ keyword }}
+        gif: {{ url }}
+        keyword: {{ keyword }}
 {% elif lambdahost == 'docker-linode1' %}
 /usr/share/nginx/html/linode.html:
   file.managed:
     - source: salt://sites/SaltConf16/linode.html
     - template: jinja
     - defaults:
-        linode_gif: {{ url }}
-        linode_keyword: {{ keyword }}
+        gif: {{ url }}
+        keyword: {{ keyword }}
 {% endif %}
