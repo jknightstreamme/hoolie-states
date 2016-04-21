@@ -1,5 +1,5 @@
 {% set url = pillar.get('url', 'http://i.giphy.com/FB7yASVBqPiFy.gif') %}
-{% set keyword = pillar.get('keyword', 'Kick Minion') %}
+{% set keyword = pillar.get('keyword', 'Kickasdf Minion') %}
 {% set lambdahost = pillar.get('lambdahost', 'docker-aws1') %}
 
 {% if lambdahost == 'docker-aws1' %}
@@ -18,12 +18,4 @@
     - defaults:
         linode_gif: {{ url }}
         linode_keyword: {{ keyword }}
-{% elif lambdahost == 'docker-linode1' %}
-/usr/share/nginx/html/local.html:
-  file.managed:
-    - source: salt://sites/SaltConf16/local.html
-    - template: jinja
-    - defaults:
-        local_gif: {{ url }}
-        local_keyword: {{ keyword }}
 {% endif %}
