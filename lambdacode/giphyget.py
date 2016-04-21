@@ -11,7 +11,7 @@ def getgif(giphy):
     url = "{0}search?q={1}&api_key={2}".format(hostid, giphy, apikey)
     session = requests.session()
     response = session.get(url)
-    gifurl = response.json()['data'][1]['images']['original']['url']
+    gifurl = response.json()['data'][0]['images']['original']['url']
     return gifurl
 
 
