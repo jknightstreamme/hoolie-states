@@ -1,6 +1,6 @@
 {% set url = salt['pillar.get']('url', 'http://i.giphy.com/FB7yASVBqPiFy.gif') %}
 {% set keyword = salt['pillar.get']('keyword', 'Kick Minion') %}
-{% set lamdahost = salt['pillar.get']('lamdahost', 'docker-aws1') %}
+{% set lambdahost = salt['pillar.get']('lambdahost', 'docker-aws1') %}
 {% if lambdahost == 'docker-aws1' %}
 /usr/share/nginx/html/aws.html:
   file.recurse:
