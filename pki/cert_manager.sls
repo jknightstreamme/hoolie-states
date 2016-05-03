@@ -8,6 +8,6 @@
 
 "Install cert":
   cmd.run:
-    - name: "certutil -addstore -f 'Root' c:\\stage\\test.crt"
+    - name: "certutil -addstore -f -user My c:\\stage\\test.crt"
 
 
