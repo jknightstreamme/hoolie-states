@@ -66,7 +66,7 @@ def view_certfile(certpath):
 
     pscmd = []
     pscmd.append(r'$cert = new-object system.security.cryptography.x509certificates.x509certificates2;')
-    pscmd.append(r'$cert.import({0});'.format(certpath))
+    pscmd.append(r'$cert.import('{0}');'.format(certpath))
     pscmd.append(r'$cert.Subject')
 
     command = ''.join(pscmd)
