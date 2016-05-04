@@ -12,3 +12,9 @@
     - location: 'LocalMachine'
     - datastore: 'My'
     - certpath: 'c:\stage\test.crt'
+
+
+"Install CRL":
+  win_crtmgr.crl_installed:
+    - datastore: 'Root'
+    - crl: 'c:\stage\verisign.crl'
