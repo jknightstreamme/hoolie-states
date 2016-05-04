@@ -33,11 +33,11 @@ def cert_installed(name, location, datastore, certpath):
 
     # Get the cert subject
 
-    certsubject = __salt__['win_certmgr.view_certfile'](certpath=certpath)
+    certsubject = __salt__['win_certmgr.view_certfile'](certpath)
 
     # Get a list of cert subject installed
 
-    certlist = __salt__['win_certmgr.list_certs'](location=location, datastore=datastore)
+    certlist = __salt__['win_certmgr.list_certs'](location, datastore)
 
     # check to see if cert is already installed
 
@@ -45,7 +45,7 @@ def cert_installed(name, location, datastore, certpath):
         ret['comment'] = "{0} is already installed".format(certsubject)
 
     else:
-        addcert = __salt__['win_certmgr.add_cert'](location=location, datastore=datastore, certpath=certpath)
+        addcert = __salt__['win_certmgr.add_cert'](location, datastore, certpath)
         ret['result'] = True
         ret['changes'] = {'results': '{0}'.format(addcert)}
         ret['comment'] = "{0} has been installed".format(certsubject)
