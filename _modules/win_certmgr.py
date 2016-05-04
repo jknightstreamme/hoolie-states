@@ -84,3 +84,11 @@ def add_cert(datastore, certpath):
     command = ''.join(pscmd)
     return _srvmgr(command)
 
+
+def add_crl(datastore, crlpath): 
+    pscmd = []
+    pscmd.append(r'certutil -addstore -f {0} {1}'.format(datastore, crlpath))
+
+    command = ''.join(pscmd)
+    return _srvmgr(command)
+
