@@ -59,3 +59,15 @@ def list_certstores():
     command = ''.join(pscmd)
     return _srvmgr(command)
 
+
+def list_certs(datastore):
+
+    pscmd = []
+    pscmd.append(r'set-location CERT:\LOCALMACHINE\{0};'.format(datastore))
+    pscmd.append(r'Get-ChildItem')
+    pscmd.append(r' | foreach {')
+    pscmd.append(r' $_.Subject')
+    pscmd.append(r'};')
+
+    command = ''.join(pscmd)
+    return _srvmgr(command)
