@@ -7,4 +7,8 @@
 
 
 
-
+"Install Cert":
+  win_certmgr.cert_installed:
+    - location: 'LocalMachine'
+    - datastore: 'My'
+    - certpath: 'c:\stage\test.crt'

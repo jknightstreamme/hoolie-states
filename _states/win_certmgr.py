@@ -25,7 +25,7 @@ def __virtual__():
     return False
 
 
-def cert_installed(location, datastore, certpath):
+def cert_installed(name, location, datastore, certpath):
     ret = {'name': name,
            'changes': {},
            'result': True,
