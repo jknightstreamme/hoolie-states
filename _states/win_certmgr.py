@@ -51,3 +51,17 @@ def cert_installed(name, location, datastore, certpath):
         ret['comment'] = "{0} has been installed".format(certsubject)
 
     return ret
+
+def crl_installed(name, datastore, crlpath):
+
+    ret = {'name': name,
+           'changes': {},
+           'result': True,
+           'comment': ''}
+
+    addcrl = __salt__['win_certmgr.add_crl'](datastore, crlpath)
+    ret['result'] = True
+    ret['changes'] = {'results': '{0}'.format(addcrl)}
+    ret['comment'] = "{0} has been installed".format(certsubject)
+
+    return ret
