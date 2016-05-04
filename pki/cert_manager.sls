@@ -15,6 +15,6 @@
 
 
 "Install CRL":
-  win_crtmgr.crl_installed:
+  win_certmgr.crl_installed:
     - datastore: 'Root'
     - crl: 'c:\stage\verisign.crl'
