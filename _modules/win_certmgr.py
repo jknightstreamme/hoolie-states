@@ -41,7 +41,7 @@ def _srvmgr(func):
         python_shell=True)
 
 
-def list_certstores():
+def list_certstores(location):
     '''
     List all the currently deployed certificates
 
@@ -49,10 +49,10 @@ def list_certstores():
 
     .. code-block:: bash
 
-        salt '*' win_certmgr.list_certstores
+        salt '*' win_certmgr.list_certstores location='LocalMachine'
     '''
     pscmd = []
-    pscmd.append(r'set-location CERT:\LOCALMACHINE;')
+    pscmd.append(r'set-location CERT:\{0};'.format(location))
     pscmd.append(r'Get-ChildItem')
     pscmd.append(r' | foreach {')
     pscmd.append(r' $_.Name')
@@ -62,10 +62,21 @@ def list_certstores():
     return _srvmgr(command)
 
 
-def list_certs(datastore):
+def view_certfile(certpath):
 
     pscmd = []
-    pscmd.append(r'set-location CERT:\LOCALMACHINE\{0};'.format(datastore))
+    pscmd.append(r'$cert = new-object system.security.cryptography.x509certificates.x509certificates2;')
+    pscmd.append(r'$cert.import({0});'.format(certpath))
+    pscmd.append(r'$cert.Subject')
+
+    command = ''.join(pscmd)
+    return _srvmgr(command)
+
+
+def list_certs(location, datastore):
+
+    pscmd = []
+    pscmd.append(r'set-location CERT:\{0}\{1};'.format(location, datastore))
     pscmd.append(r'Get-ChildItem')
     pscmd.append(r' | foreach {')
     pscmd.append(r' $_.Subject')
@@ -85,7 +96,7 @@ def add_cert(datastore, certpath):
     return _srvmgr(command)
 
 
-def add_crl(datastore, crlpath): 
+def add_crl(datastore, crlpath):
     pscmd = []
     pscmd.append(r'certutil -addstore -f {0} {1}'.format(datastore, crlpath))
 
