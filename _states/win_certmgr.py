@@ -60,8 +60,13 @@ def crl_installed(name, datastore, crlpath):
            'comment': ''}
 
     addcrl = __salt__['win_certmgr.add_crl'](datastore, crlpath)
-    ret['result'] = True
-    ret['changes'] = {'results': '{0}'.format(addcrl)}
-    ret['comment'] = "{0} has been installed".format(crlpath)
+
+    if "already in store" in addcrl:
+        ret['result'] = True
+        ret['comment'] = "{0} was already installed".format(crlpath)
+    else:
+        ret['result'] = True
+        ret['changes'] = {'results': '{0}'.format(addcrl)}
+        ret['comment'] = "{0} has been installed".format(crlpath)
 
     return ret
