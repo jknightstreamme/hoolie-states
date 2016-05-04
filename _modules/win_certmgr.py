@@ -86,11 +86,11 @@ def list_certs(location, datastore):
     return _srvmgr(command)
 
 
-def add_cert(datastore, certpath):
+def add_cert(location, datastore, certpath):
 
     pscmd = []
     pscmd.append(r'get-childitem -path {0} |'.format(certpath))
-    pscmd.append(r'import-certificate -certstorelocation CERT:\LOCALMACHINE\{0};'.format(datastore))
+    pscmd.append(r'import-certificate -certstorelocation CERT:\{0}\{1};'.format(location, datastore))
 
     command = ''.join(pscmd)
     return _srvmgr(command)
