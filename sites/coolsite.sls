@@ -9,8 +9,10 @@ include:
 
 {% if pillar.get('version') is defined %}
 {% set env = pillar['version'] %}
-{% else %}
+{% elif grains.get('version') is defined %}
 {% set env = grains.get('version', 'dev') %}
+{% else %}
+{% set env = 'dev' %}
 {% endif %}
 
 ####### STAGE KEYS #####################

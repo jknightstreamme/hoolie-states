@@ -63,8 +63,8 @@ def update_giphy(keyword):
     ret = giphyget(keyword)
 
     fun = 'state.sls'
-    tgt = 'saltconf:True'
-    expr_form = 'grain'
+    tgt = 'saltmaster'
+    expr_form = 'glob'
 
     arg = ['updatewebpage']
     kwarg = {"pillar": ret}

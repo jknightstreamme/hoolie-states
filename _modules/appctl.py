@@ -31,12 +31,12 @@ def deploy(appname, newversion):
     __salt__['event.fire_master'](
         data=inmaint,
         tag=zenosstag
-        )
+    )
 
     ret = __salt__['state.sls'](
         mods='sites.{0}'.format(appname),
         pillar=pil
-        )
+    )
 
     # Log message to Zenoss that software was updated
 
@@ -45,7 +45,7 @@ def deploy(appname, newversion):
     __salt__['event.fire_master'](
         data=zenossevent,
         tag=zenosseventtag
-        )
+    )
 
     # Take out of Maintenance mode
 
@@ -54,8 +54,7 @@ def deploy(appname, newversion):
     __salt__['event.fire_master'](
         data=outmaint,
         tag=zenosstag
-        )
+    )
 
-    
     ret = "{0} has been updated to version {1}".format(appname, newversion)
     return ret

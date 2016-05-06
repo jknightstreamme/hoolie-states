@@ -63,7 +63,7 @@ def start(account_sid,
 
     if not all(account_sid, auth_token, twilio_number):
         log.debug('Twilio account configuration not found')
-        return ret
+        return
 
     client = TwilioRestClient(account_sid, auth_token)
 
@@ -72,7 +72,7 @@ def start(account_sid,
         log.trace('Num messages: {0}'.format(len(messages)))
         if len(messages) < 1:
             log.trace('Twilio engine has no texts')
-            return ret
+            return
 
         for message in messages:
             item = {}
