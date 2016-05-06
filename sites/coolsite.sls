@@ -8,7 +8,7 @@ include:
 {% set sshkey = "acme-site-demo" %}
 
 {% if salt['pillar.get']('versionget') is defined %}
-{% set env = salt['pillar.get']pillar['versionget'] %}
+{% set env = salt['pillar.get']('versionget') %}
 {% elif salt['grains.get']('versionget') is defined %}
 {% set env = salt['grains.get']('versionget', 'dev') %}
 {% else %}
