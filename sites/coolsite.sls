@@ -10,7 +10,7 @@ include:
 {% if pillar.get('version') is defined %}
 {% set env = pillar['version'] %}
 {% elif grains.get('version') is defined %}
-{% set env = grains.get('version', 'dev') %}
+{% set env = salt['grains.get']('version', 'dev') %}
 {% else %}
 {% set env = 'dev' %}
 {% endif %}
