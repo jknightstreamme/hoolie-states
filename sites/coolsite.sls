@@ -7,10 +7,10 @@ include:
 {% set workingdir = "/usr/share/nginx/html/" %}
 {% set sshkey = "acme-site-demo" %}
 
-{% if pillar.get('version') is defined %}
-{% set env = pillar['version'] %}
-{% elif grains.get('version') is defined %}
-{% set env = salt['grains.get']('version', 'dev') %}
+{% if pillar.get('versionget') is defined %}
+{% set env = pillar['versionget'] %}
+{% elif grains.get('versionget') is defined %}
+{% set env = salt['grains.get']('versionget', 'dev') %}
 {% else %}
 {% set env = 'dev' %}
 {% endif %}
