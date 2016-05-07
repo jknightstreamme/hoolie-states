@@ -31,6 +31,7 @@ include:
     - identity: /root/.ssh/{{ sshkey }}.priv
     - force_reset: True
     - force_checkout: True
+    - force_clone: True
     - require:
         - pkg: 'GIT software'
 
