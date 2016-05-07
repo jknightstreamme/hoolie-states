@@ -7,9 +7,9 @@ include:
 {% set workingdir = "/usr/share/nginx/html/" %}
 {% set sshkey = "acme-site-demo" %}
 
-{% if salt['pillar.get']('version') is defined %}
+{% if pillar.get('version') is defined %}
 {% set env = salt['pillar.get']('version') %}
-{% elif salt['grains.get']('version') is defined %}
+{% elif grains.get('version') is defined %}
 {% set env = salt['grains.get']('version', 'dev') %}
 {% else %}
 {% set env = 'dev' %}
