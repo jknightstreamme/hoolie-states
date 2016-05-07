@@ -7,10 +7,8 @@ include:
 {% set workingdir = "/usr/share/nginx/html/" %}
 {% set sshkey = "acme-site-demo" %}
 
-{% set env = salt['pillar.get']('version, '') %}
-{% if not env %}
 {% set env = salt['grains.get']('version', 'dev') %}
-{% endif %}
+
 
 ####### STAGE KEYS #####################
 
