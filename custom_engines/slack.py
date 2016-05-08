@@ -137,17 +137,13 @@ def start(token,
                                 kwargs = {}
 
                                 if cmd == 'help':
-                                    channel.send_message("Valid commands")
+                                    channel.send_message("*Valid commands*")
                                     for c in valid_commands:
-                                        channel.send_message("-- " + c)
-                                    #channel.send_message(" -- ".join(valid_commands))
+                                        channel.send_message("> " + c)
 
-                                    channel.send_message("Available Aliases")
+                                    channel.send_message("*Available Aliases*")
                                     for a in aliases:
-                                        # example
-                                        # deploy appname newversion
-                                        channel.send_message("-- " + a['msg'])
-                                    #channel.send_message(" -- ".join(aliases.keys()))
+                                        channel.send_message("> *" + a + "* --> _" + aliases[a]['help'] + "_")
                                     return
 
                                 # Ensure the command is allowed
