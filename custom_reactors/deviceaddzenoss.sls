@@ -1,6 +1,6 @@
 {% if data['data']['deviceclass'] is defined %}
 
-{% set deviceclass = data['data']['deviceclass'] %}
+{% set deviceclass = data['data']['deviceclass'][0] %}
 {% set devicename = data['data']['devicename'][0] %}
 {% set serialnumber = data['data']['serialnumber'] %}
 {% set title = data['data']['title'] %}
