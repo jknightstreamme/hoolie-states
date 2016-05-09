@@ -10,6 +10,9 @@ from __future__ import absolute_import
 
 # Import salt libs
 import salt.utils
+import logging
+
+log = logging.getLogger(__name__)
 
 try:
     import RPi.GPIO as GPIO
@@ -38,28 +41,30 @@ def _session():
     GPIO.output(13, 1)
     GPIO.output(15, 1)
 
+    engine = pyttsx.init()
+    engine.setProperty('rate', 150)
+    engine.setProperty('volume', 10)
+
     return
 
 
 def setcolor(colorint=111):
 
-    GPIO.output(11, colorint[0])
-    GPIO.output(13, colorint[1])
-    GPIO.output(15, colorint[2])
+    GPIO.output(11, int(colorint[0]))
+    GPIO.output(13, int(colorint[1]))
+    GPIO.output(15, int(colorint[2]))
 
 
 def statusupdate(color='green'):
 
-    _session()
-
-    if color == 'green':
-        setcolor(010)
+    if color == 'blue':
+        setcolor('010')
 
     if color == 'red':
-        setcolor(100)
+        setcolor('100')
 
-    if color == 'blue':
-        setcolor(001)
+    if color == 'green':
+        setcolor('001')
 
     return
 
