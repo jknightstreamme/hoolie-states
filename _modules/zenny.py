@@ -57,6 +57,8 @@ def setcolor(colorint=111):
 
 def statusupdate(color='green'):
 
+    _session()
+
     if color == 'blue':
         setcolor('010')
 
