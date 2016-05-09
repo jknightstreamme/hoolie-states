@@ -25,7 +25,7 @@ def __virtual__():
         return __virtualname__
 
 
-def zennyalert(name, color, message):
+def alert(name, color, message):
 
     ret = {'name': name,
            'changes': {},
