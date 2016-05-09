@@ -8,7 +8,7 @@ include:
 {% set sshkey = "acme-site-demo" %}
 
 
-{% if pillar.get('version') is defined %}
+{% if pillar['version'] is defined %}
 {% set env = pillar['version'] %}
 {% else %}
 {% set env = grains.get('version', 'dev') %}
