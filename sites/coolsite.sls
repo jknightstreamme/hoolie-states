@@ -54,6 +54,7 @@ include:
     - rev: {{ env }}
     - identity: /root/.ssh/{{ sshkey }}.priv
     - force_clone: True
+    - force_reset: True
     - require:
       - pkg: 'GIT software'
 
