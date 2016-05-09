@@ -42,7 +42,7 @@ def _session():
     GPIO.output(15, 1)
 
     engine = pyttsx.init()
-    engine.setProperty('rate', 150)
+    engine.setProperty('rate', 100)
     engine.setProperty('volume', 10)
 
     return
