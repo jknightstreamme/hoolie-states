@@ -54,11 +54,11 @@ include:
     - rev: {{ env }}
     - identity: /root/.ssh/{{ sshkey }}.priv
     - force_clone: True
-    - bare: True
     - force_reset: True
     - update_head: False
     - require:
       - pkg: 'GIT software'
+      - pkg: 'Deploy NGINX package'
 
 ####### UPDATE GIT CONFIG  #############
 "Setup {{ env }} email config":
