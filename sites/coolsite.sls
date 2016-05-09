@@ -55,7 +55,7 @@ include:
     - identity: /root/.ssh/{{ sshkey }}.priv
     - force_clone: True
     - force_reset: True
-    - update_head: False
+    - update_head: True
     - require:
       - pkg: 'GIT software'
       - pkg: 'Deploy NGINX package'
