@@ -55,6 +55,7 @@ include:
     - identity: /root/.ssh/{{ sshkey }}.priv
     - force_clone: True
     - force_reset: True
+    - update_head: False
     - require:
       - pkg: 'GIT software'
 
@@ -82,6 +83,8 @@ include:
     - repo: {{ workingdir }}
     - require:
       - git: "Pull in ACME site code"
+
+
 
 "Confirm NGINX service started after git deploy":
   service.running:
