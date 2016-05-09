@@ -42,8 +42,9 @@ def _session():
     return
 
 
-def setcolor(colorint=111):
+def setcolor(colorint='111'):
 
+    log.debug('color int= ' + colorint)
     GPIO.output(11, int(colorint[0]))
     GPIO.output(13, int(colorint[1]))
     GPIO.output(15, int(colorint[2]))
