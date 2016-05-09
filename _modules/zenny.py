@@ -41,10 +41,6 @@ def _session():
     GPIO.output(13, 1)
     GPIO.output(15, 1)
 
-    engine = pyttsx.init()
-    engine.setProperty('rate', 20)
-    engine.setProperty('volume', 40)
-
     return
 
 
@@ -74,6 +70,8 @@ def statusupdate(color='green'):
 def say(msg='Testing the system'):
 
     engine = pyttsx.init()
+    engine.setProperty('rate', 150)
+    engine.setProperty('volume', 10)
     engine.say(msg)
     engine.runAndWait()
 
