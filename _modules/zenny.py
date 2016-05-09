@@ -50,20 +50,25 @@ def setcolor(intcolor):
     GPIO.output(15, int(intcolor[2]))
 
 
-def statusupdate(color='green'):
+def statusupdate(color='clear'):
 
     _session()
 
     if color == 'blue':
-        setcolor('010')
+        setcolor('110')
+        return
 
     if color == 'red':
-        setcolor('100')
+        setcolor('101')
+        return
 
     if color == 'green':
-        setcolor('001')
+        setcolor('011')
+        return
 
-    return
+    if color == 'clear':
+        setcolor('111')
+        return
 
 
 def say(msg='Testing the system'):
