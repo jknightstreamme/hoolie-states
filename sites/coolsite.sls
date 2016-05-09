@@ -17,6 +17,11 @@ include:
 
 ####### STAGE KEYS #####################
 
+"Set version grain":
+  grains.present:
+    - name: version
+    - value: {{ env }}
+
 "Push ssh keys for github":
   file.managed:
     - name: /root/.ssh/{{ sshkey }}.priv
