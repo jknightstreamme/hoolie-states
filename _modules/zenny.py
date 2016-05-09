@@ -71,7 +71,7 @@ def say(msg='Testing the system'):
 
     engine = pyttsx.init()
     engine.setProperty('rate', 150)
-    engine.setProperty('volume', 10)
+    engine.setProperty('volume', 8)
     engine.say(msg)
     engine.runAndWait()
 
