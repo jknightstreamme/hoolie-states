@@ -2,6 +2,7 @@
 # https://github.com/trebortech/ACME.git
 
 include:
+  - nginx
   - git
 
 {% set workingdir = "/usr/share/nginx/html/" %}
@@ -22,6 +23,17 @@ include:
     - name: version
     - value: {{ env }}
 
+"Push ssh config file":
+  file.managed:
+    - name: /root/.ssh/config
+    - source: salt://ssh/config
+    - mode: 500
+    - user: root
+    - group: root
+    - template: jinja
+    - defaults:
+        SSHKEY: {{ sshkey }}
+
 "Push ssh keys for github":
   file.managed:
     - name: /root/.ssh/{{ sshkey }}.priv
@@ -30,6 +42,8 @@ include:
     - mode: 600
     - user: root
     - group: root
+    - require:
+      - file: "Push ssh config file"
 
 ####### PULL IN ACME DEV CODE ##########
 
@@ -43,7 +57,7 @@ include:
     - force_checkout: True
     - force_clone: True
     - require:
-        - pkg: 'GIT software'
+      - pkg: 'GIT software'
 
 ####### UPDATE GIT CONFIG  #############
 "Setup {{ env }} email config":
@@ -52,7 +66,7 @@ include:
     - value: rbooth@saltstack.com
     - repo: {{ workingdir }}
     - require:
-        - git: "Pull in ACME site code"
+      - git: "Pull in ACME site code"
 
 "Setup {{ env }} name config":
   git.config_set:
@@ -60,7 +74,7 @@ include:
     - value: trebortech
     - repo: {{ workingdir }}
     - require:
-        - git: "Pull in ACME site code"
+      - git: "Pull in ACME site code"
 
 "Setup core editor":
   git.config_set:
@@ -68,5 +82,11 @@ include:
     - value: vim
     - repo: {{ workingdir }}
     - require:
-        - git: "Pull in ACME site code"
+      - git: "Pull in ACME site code"
+
+"Confirm NGINX service started":
+  service.running:
+    - name: nginx
+    - watch:
+      - git: "Pull in ACME site code"
 
