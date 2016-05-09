@@ -3,8 +3,6 @@ Module to manage Zenny
 
 '''
 
-
-
 from __future__ import absolute_import
 
 
