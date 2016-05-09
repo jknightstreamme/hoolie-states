@@ -43,7 +43,7 @@ def _session():
 
     engine = pyttsx.init()
     engine.setProperty('rate', 100)
-    engine.setProperty('volume', 10)
+    engine.setProperty('volume', 40)
 
     return
 
