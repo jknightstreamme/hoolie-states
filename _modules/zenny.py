@@ -14,6 +14,8 @@ log = logging.getLogger(__name__)
 
 try:
     import RPi.GPIO as GPIO
+    from gtts import gTTS
+    from tempfile import TemporaryFile
     import pyttsx
     HAS_LIBS = True
 except ImportError:
@@ -73,13 +75,20 @@ def statusupdate(color='clear'):
 
 def say(msg='Testing the system'):
 
+    tts = gTTS(text=msg, lang='en')
+    #f = TemporaryFile()
+    #tts.write_to_fp(f)
+    #f.close()
+    tts.save("/tmp/hello.mp3")
+    return
+
+'''
     engine = pyttsx.init()
     engine.setProperty('rate', 150)
     engine.setProperty('volume', 8)
     engine.say(msg)
     engine.runAndWait()
-
-    return
+'''
 
 
 def cleanup():
