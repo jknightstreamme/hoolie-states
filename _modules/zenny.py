@@ -80,7 +80,7 @@ def say(msg='Testing the system'):
     #tts.write_to_fp(f)
     #f.close()
     tts.save(filepath)
-    __salt__['cmd.run']('/usr/bin/mplayer {0}'.format(filepath))
+    __salt__['cmd.run']('/usr/bin/mplayer -volume 100 {0}'.format(filepath))
 
     return
 
