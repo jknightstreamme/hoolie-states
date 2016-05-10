@@ -4,5 +4,5 @@
 
 "Send me a message":
   zenny.alert:
-    - color: {{ color }}
-    - message: {{ message }}
+    - color: "{{ color }}"
+    - message: "{{ message }}"
