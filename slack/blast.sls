@@ -4,4 +4,4 @@
     - channel: '#{{ pillar['slack']['channel'] }}'
     - from_name: {{ pillar['slack']['from_name'] }}
     - api_key: {{ pillar['slack']['api_key'] }}
-    - message: '{{ pillar['mymessage'] }}'
+    - message: "{{ pillar['mymessage'] }}"
