@@ -74,12 +74,14 @@ def statusupdate(color='clear'):
 
 
 def say(msg='Testing the system'):
-
+    filepath = '/tmp/hello.mp3'
     tts = gTTS(text=msg, lang='en')
     #f = TemporaryFile()
     #tts.write_to_fp(f)
     #f.close()
-    tts.save("/tmp/hello.mp3")
+    tts.save(filepath)
+    __salt__['cmd.run']('/usr/bin/mplayer {0}'.format(filepath))
+
     return
 
 '''
