@@ -74,6 +74,7 @@ def statusupdate(color='clear'):
 
 
 def say(msg='Testing the system'):
+    '''
     filepath = '/tmp/hello.mp3'
     tts = gTTS(text=msg, lang='en')
     #f = TemporaryFile()
@@ -83,15 +84,14 @@ def say(msg='Testing the system'):
     __salt__['cmd.run']('/usr/bin/mplayer -volume 100 {0}'.format(filepath))
 
     return
+    '''
 
-'''
     engine = pyttsx.init()
     engine.setProperty('rate', 150)
     engine.setProperty('volume', 8)
     engine.say(msg)
     engine.runAndWait()
-'''
-
+    return
 
 def cleanup():
 
