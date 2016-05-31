@@ -6,4 +6,4 @@
 
 'test':
   file.touch:
-    - name: {{ b.[path] }}
+    - name: {{ b['path'] }}
