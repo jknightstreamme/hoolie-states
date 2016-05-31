@@ -7,4 +7,4 @@
 
 'test':
   file.touch:
-    - name: {{ b }}
+    - name: {{ c }}
