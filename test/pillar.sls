@@ -4,4 +4,4 @@
 
 'test':
   file.touch:
-    - name: {{ pillar.get('netspend:{{ role }}:path:', 'no go') }}
+    - name: {{ pillar.get('netspend:{{ role }}:path', 'no go') }}
