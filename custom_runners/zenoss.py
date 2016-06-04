@@ -249,6 +249,7 @@ def add_device(deviceName,
         return 'Device already exists'
 
     log.info('Adding device %s to zenoss', deviceName)
+
     data = dict(deviceName=deviceName,
                 deviceClass=deviceClass,
                 title=title,

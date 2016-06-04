@@ -2,7 +2,7 @@
 {% set mymessage = 'The *' + data['data']['path'] + '* on machine *' + data['data']['id'] + '* has changed' %}
 
 {% elif 'service' in data['tag'] %}
-{% set mymessage = data['data']  -%}
+{% set mymessage = data['data']  %}
 
 {% else %}
 {% set mymessage = data['data']['event'] + ' ' + data['data']['name'] %}

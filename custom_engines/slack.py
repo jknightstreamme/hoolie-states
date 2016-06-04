@@ -23,6 +23,7 @@ prefaced with a !.
                    list_jobs:
                        type: runner
                        cmd: jobs.list_jobs
+                       msg: list_jobs jid
 
 :depends: slackclient
 '''
@@ -136,10 +137,13 @@ def start(token,
                                 kwargs = {}
 
                                 if cmd == 'help':
-                                    channel.send_message("Valid commands")
-                                    channel.send_message(" -- ".join(valid_commands))
-                                    channel.send_message("Available Aliases")
-                                    channel.send_message(" -- ".join(aliases.keys()))
+                                    channel.send_message("*Valid commands*")
+                                    for c in valid_commands:
+                                        channel.send_message("> " + c)
+
+                                    channel.send_message("*Available Aliases*")
+                                    for a in aliases:
+                                        channel.send_message("> *" + a + "* --> _" + aliases[a]['help'] + "_")
                                     return
 
                                 # Ensure the command is allowed
