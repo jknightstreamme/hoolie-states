@@ -141,7 +141,7 @@
 
 # Update iptables
 "Add IP Tables rule for webserver":
-  iptables.append:
+  iptables.insert:
     - table: filter
     - chain: INPUT
     - jump: ACCEPT
