@@ -32,9 +32,10 @@
 
 "Allow for remote access":
   file.replace:
-    - name: '/etc/mysql/my.cnf'
+    - name: '/etc/my.cnf'
     - pattern: 'bind-address            = 127.0.0.1'
     - repl: 'bind-address            = 0.0.0.0'
+
 
 
 "Check mysql service":
@@ -77,7 +78,7 @@
 "Install Zabbix repository package":
   pkg.installed:
     - sources:
-      - zenossdeps: salt://zabbix/zabbix-release-2.2-1.el6.noarch.rpm
+      - zabbix-release: salt://zabbix/zabbix-release-2.2-1.el6.noarch.rpm
     - require:
       - selinux: "Set SELinux mode to permissive"
 
@@ -90,10 +91,17 @@
       - zabbix-web-mysql
       - zabbix-server-mysql
 
+"Stage file for mysql":
+  file.managed:
+    - name: /tmp/zabbix-init.sql
+    - source: salt://zabbix/zabbix-init.sql
+
 # Import initial schema and data
 "Import initial schema and data":
   cmd.run:
     - name: "mysql -uroot zabbix < /tmp/zabbix-init.sql"
+    - require:
+      - file: "Stage file for mysql"
 
 "Deploy Zabbix server config":
   file.managed:
