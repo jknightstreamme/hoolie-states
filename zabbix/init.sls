@@ -82,8 +82,7 @@
       - selinux: "Set SELinux mode to permissive"
 
 # Install zabbix service
-yum install zabbix-server-mysql zabbix-web-mysql
-yum install zabbix-agent
+
 "Install Zabbix services":
   pkg.installed:
     - pkgs:
