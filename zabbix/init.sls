@@ -143,6 +143,7 @@
 "Add IP Tables rule for webserver":
   iptables.insert:
     - table: filter
+    - position: 1
     - chain: INPUT
     - jump: ACCEPT
     - match: state
