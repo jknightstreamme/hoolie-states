@@ -8,13 +8,6 @@
 
 # CentOS 6 install
 
-
-# Update packages
-"Update all packages":
-  pkg.uptodate:
-    - name: "update packages"
-    - refresh: True
-
 # Install supporting services
 "Install mysql server":
   pkg.installed:
@@ -147,4 +140,14 @@
 
 
 # Update iptables
-
+"Add IP Tables rule for webserver":
+  iptables.append:
+    - table: filter
+    - chain: INPUT
+    - jump: ACCEPT
+    - match: state
+    - connstate: NEW
+    - dport: 80
+    - sport: 1025:65535
+    - proto: tcp
+    - save: True
