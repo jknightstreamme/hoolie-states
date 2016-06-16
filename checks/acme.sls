@@ -6,5 +6,5 @@
 
 "Check deployed site":
   http.query:
-    - name: 'http://{{ siteip }}'
+    - name: 'http://{{ siteip[workingminion][0] }}'
     - status: 200
