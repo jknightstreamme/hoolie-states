@@ -8,7 +8,7 @@
   http.query:
     - name: 'http://{{ siteip[workingminion][0] }}'
     - status: 200
-    - fire_event: 'http/check/succeeded/http://{{ siteip[workingminion][0] }}'
+    - fire_event: 'http/check/succeeded/{{ workingminion }} }}'
 
 
 "Site did not deploy correctly":
