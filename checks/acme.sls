@@ -8,8 +8,9 @@
   http.query:
     - name: 'http://{{ siteip[workingminion][0] }}'
     - status: 200
-    - fire_event: 'http/check/succeeded/{{ workingminion }} }}'
+    - fire_event: 'http/check/succeeded/{{ workingminion }}'
 
+"Set mine data with the status"
 
 "Site did not deploy correctly":
   event.send:
