@@ -30,6 +30,7 @@ def http(name, status):
            'result': True,
            'comment': ''}
 
+    kwargs = {}
     kwargs['status'] = True
     #data = __salt__['http.query'](name, **kwargs)
 
