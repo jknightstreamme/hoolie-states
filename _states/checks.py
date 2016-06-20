@@ -33,7 +33,7 @@ def http(name, status):
     kwargs = {}
     kwargs['status'] = True
     #data = __salt__['http.query'](name, **kwargs)
-
+    import pdb; pdb.set_trace()
     #if data.get('status', '') == status:
     __salt__['mine.send']('http.query', name=name, **kwargs)
 
