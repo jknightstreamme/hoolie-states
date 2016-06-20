@@ -10,8 +10,6 @@ import salt.utils
 log = logging.getLogger(__name__)
 
 try:
-    import RPi.GPIO as GPIO
-    import pyttsx
     HAS_LIBS = True
 except ImportError:
     HAS_LIBS = False
