@@ -38,8 +38,6 @@
       - checks.acme
     - pillar:
         minionid: "{{ nodename }}"
-    - require:
-      - salt: "Wait for highstate to complete"
 
 "Send wait message to slack":
   salt.state:
