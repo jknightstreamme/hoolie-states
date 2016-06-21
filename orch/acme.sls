@@ -30,8 +30,6 @@
     - name: "salt/job/highstate/complete/*"
     - id_list:
       - {{ nodename }}
-    - require:
-      - salt: "Deploy New Server"
 
 "Run check of application deployed":
   salt.state:
@@ -48,8 +46,6 @@
     - name: "*http/check/succeeded/{{ nodename }}"
     - id_list:
       - saltmaster
-    - require:
-      - salt: "Run check of application deployed"
 
 "Send message to slack with status of application":
   salt.state:
