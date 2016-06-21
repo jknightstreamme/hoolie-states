@@ -59,6 +59,6 @@
     - sls:
       - slack.appstatus
     - pillar:
-      - funtype: "checks.http"
-      - minionid: "saltmaster"
+        funtype: "checks.http"
+        minionid: "saltmaster"
 
