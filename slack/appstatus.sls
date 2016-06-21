@@ -6,7 +6,7 @@
 {% set status = salt['mine.get'](tgt=workingminion, fun=funtype, expr_form='glob') %}
 
 {% if status[workingminion]['status'] is defined %}
-{% set mymessage = "The webpage status is " + status[workingminion]['status'] %}
+{% set mymessage = "The webpage status is " + status[workingminion]['status']|string %}
 
 {% else %}
 {% set mymessage = "The webpage status is " + status[workingminion] %}
