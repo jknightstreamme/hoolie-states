@@ -33,12 +33,8 @@ def http(name, status):
     kwargs = {}
     kwargs['status'] = True
 
-    try:
-      minestatus = __salt__['mine.send']('http.query', name, **kwargs)
+    __salt__['mine.send']('checks.http', name, **kwargs)
     
-    if minestatus == False
-      __salt__['mine.send']('data.cas', 'saltmaster:status', 500, '200')
-
     ret['comment'] = 'http status updated'
 
     return ret
