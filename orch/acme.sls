@@ -43,7 +43,7 @@
 
 "Wait for http status":
   salt.wait_for_event:
-    - name: "*http/check/succeeded/{{ nodename }}"
+    - name: "salt/state_result/*/http/check/succeeded/{{ nodename }}"
     - id_list:
       - 'saltmaster'
 
@@ -55,3 +55,4 @@
     - pillar:
       - funtype: "checks.http"
       - minionid: "saltmaster"
+
