@@ -5,7 +5,7 @@
 
 {% set status = salt['mine.get'](tgt=workingminion, fun=funtype, expr_form='glob') %}
 
-{% set mymessage = status[workingminion][0] %}
+{% set mymessage = status[workingminion] %}
 
 "Send status message of app":
   slack.post_message:
