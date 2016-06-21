@@ -47,11 +47,11 @@
     - pillar:
         mymessage: "Start wait for http check"
 
-"Wait for http status":
-  salt.wait_for_event:
-    - name: "salt/state_result/*/http/check/succeeded/{{ nodename }}"
-    - id_list:
-      - 'saltmaster'
+#"Wait for http status":
+#  salt.wait_for_event:
+#    - name: "salt/state_result/*/http/check/succeeded/{{ nodename }}"
+#    - id_list:
+#      - 'saltmaster'
 
 "Send message to slack with status of application":
   salt.state:
