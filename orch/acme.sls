@@ -22,7 +22,7 @@
     - sls:
       - slack.blast
     - pillar:
-      mymessage: "{{ nodename }} cloud deploy done"
+        mymessage: "{{ nodename }} cloud deploy done"
 
 
 "Wait for highstate to complete":
@@ -45,8 +45,17 @@
 
 "Wait for http status":
   salt.wait_for_event:
-    - name: "*state_result*/{{ nodename }}"
+    - name: "*http/check/succeeded/{{ nodename }}"
     - id_list:
       - saltmaster
     - require:
       - salt: "Run check of application deployed"
+
+"Send message to slack with status of application":
+  salt.state:
+    - tgt: 'saltmaster'
+    - sls:
+      - slack.appstatus
+    - pillar:
+      - funtype: "checks.http"
+      - minionid: "saltmaster"
