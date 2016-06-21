@@ -45,7 +45,7 @@
   salt.wait_for_event:
     - name: "*http/check/succeeded/{{ nodename }}"
     - id_list:
-      - saltmaster
+      - 'saltmaster'
 
 "Send message to slack with status of application":
   salt.state:
