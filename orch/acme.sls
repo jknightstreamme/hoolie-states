@@ -41,6 +41,14 @@
     - require:
       - salt: "Wait for highstate to complete"
 
+"Send wait message to slack":
+  salt.state:
+    - tgt: 'saltmaster'
+    - sls:
+      - slack.blast
+    - pillar:
+        mymessage: "Start wait for http check"
+
 "Wait for http status":
   salt.wait_for_event:
     - name: "salt/state_result/*/http/check/succeeded/{{ nodename }}"
