@@ -25,11 +25,11 @@
         mymessage: "{{ nodename }} cloud deploy done"
 
 
-"Wait for highstate to complete":
-  salt.wait_for_event:
-    - name: "salt/job/highstate/complete/*"
-    - id_list:
-      - {{ nodename }}
+#"Wait for highstate to complete":
+#  salt.wait_for_event:
+#    - name: "salt/job/highstate/complete/*"
+#    - id_list:
+#      - {{ nodename }}
 
 "Run check of application deployed":
   salt.state:
