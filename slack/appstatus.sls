@@ -5,7 +5,13 @@
 
 {% set status = salt['mine.get'](tgt=workingminion, fun=funtype, expr_form='glob') %}
 
-{% set mymessage = status[workingminion] %}
+{% if status[workingminion]['status'] is defined %}
+{% set mymessage = "The webpage status is " + status[workingminion]['status'] %}
+
+{% else %}
+{% set mymessage = "The webpage status is " + status[workingminion] %}
+
+{% endif %}
 
 "Send status message of app":
   slack.post_message:
