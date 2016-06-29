@@ -29,8 +29,6 @@
       - slack.blast
     - pillar:
         mymessage: "{{ nodename }} cloud deploy done"
-    - require:
-        "Execute HighState on new test box"
 
 "Run check of application deployed":
   salt.state:
