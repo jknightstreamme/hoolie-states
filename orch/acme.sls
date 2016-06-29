@@ -16,6 +16,12 @@
           minion:
             master: 10.5.0.239
 
+"Hack a wait clause":
+  salt.function:
+    - tgt: 'saltmaster'
+    - name: cmd.run
+    - kwarg:
+        name: 'sleep 20'
 
 "Send cloud deploy message to slack":
   salt.state:
