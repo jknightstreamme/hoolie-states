@@ -1,5 +1,6 @@
 {% set sitename = pillar['sitename'] %}
 {% set nodename = pillar['nodename'] %}
+{% set refid = pillar['refid'] %}
 
 "Deploy New Server":
   salt.function:
@@ -25,12 +26,6 @@
         mymessage: "{{ nodename }} cloud deploy done"
 
 
-#"Wait for highstate to complete":
-#  salt.wait_for_event:
-#    - name: "salt/job/highstate/complete/*"
-#    - id_list:
-#      - {{ nodename }}
-
 "Run check of application deployed":
   salt.state:
     - tgt: 'saltmaster'
@@ -47,11 +42,6 @@
     - pillar:
         mymessage: "Start wait for http check"
 
-#"Wait for http status":
-#  salt.wait_for_event:
-#    - name: "salt/state_result/*/http/check/succeeded/{{ nodename }}"
-#    - id_list:
-#      - 'saltmaster'
 
 "Send message to slack with status of application":
   salt.state:
@@ -62,3 +52,12 @@
         funtype: "checks.http"
         minionid: "saltmaster"
 
+"Destroy VM":
+  salt.function:
+    - tgt: 'saltmaster'
+    - name: cloud.Destroy
+    - kwarg:
+        names:
+          - {{ nodename }}
+
+# Need to build tag
