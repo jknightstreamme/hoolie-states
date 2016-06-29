@@ -21,7 +21,7 @@
     - tgt: 'saltmaster'
     - name: cmd.run
     - kwarg:
-        name: 'sleep 20'
+        cmd: 'sleep 20'
 
 "Send cloud deploy message to slack":
   salt.state:
