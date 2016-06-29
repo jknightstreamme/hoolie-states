@@ -9,6 +9,7 @@ from socket import error as socket_error
 # Import salt libs
 import salt.utils
 import logging
+import time
 
 log = logging.getLogger(__name__)
 
@@ -28,11 +29,15 @@ def __virtual__():
 
 def http(name, **kwargs):
 
-    try:
-        data = __salt__['http.query'](name, **kwargs)
+    time.sleep(5)
+    for x in range(0, 10):
+        try:
+            data = __salt__['http.query'](name, **kwargs)
+            break
 
-    except socket_error:
-        data = 'nogo'
+        except socket_error:
+            data = 'nogo'
+
 
     return data
 

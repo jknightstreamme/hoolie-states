@@ -1,6 +1,7 @@
 {% set sitename = pillar['sitename'] %}
 {% set nodename = pillar['nodename'] %}
 {% set refid = pillar['refid'] %}
+{% set committime = pillar['committime'] %}
 
 "Deploy New Server":
   salt.function:
@@ -16,12 +17,10 @@
           minion:
             master: 10.5.0.239
 
-"Hack a wait clause":
-  salt.function:
-    - tgt: 'saltmaster'
-    - name: cmd.run
-    - kwarg:
-        cmd: 'sleep 20'
+"Execute HighState on new test box":
+  salt.state:
+    - tgt: '{{ nodename }}'
+    - highstate: True
 
 "Send cloud deploy message to slack":
   salt.state:
@@ -30,7 +29,8 @@
       - slack.blast
     - pillar:
         mymessage: "{{ nodename }} cloud deploy done"
-
+    - require:
+        "Execute HighState on new test box"
 
 "Run check of application deployed":
   salt.state:
@@ -48,7 +48,6 @@
     - pillar:
         mymessage: "Start wait for http check"
 
-
 "Send message to slack with status of application":
   salt.state:
     - tgt: 'saltmaster'
@@ -57,6 +56,7 @@
     - pillar:
         funtype: "checks.http"
         minionid: "saltmaster"
+        refid: "{{ refid }}"
 
 "Destroy VM":
   salt.function:

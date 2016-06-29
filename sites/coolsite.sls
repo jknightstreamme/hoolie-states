@@ -85,8 +85,6 @@ include:
     - require:
       - git: "Pull in ACME site code"
 
-
-
 "Confirm NGINX service started after git deploy":
   service.running:
     - name: nginx
