@@ -30,6 +30,14 @@
     - pillar:
         mymessage: "{{ nodename }} cloud deploy done"
 
+"Send wait message to slack":
+  salt.state:
+    - tgt: 'saltmaster'
+    - sls:
+      - slack.blast
+    - pillar:
+        mymessage: "Application has been deployed. Starting application check from remote host"
+
 "Run check of application deployed":
   salt.state:
     - tgt: 'saltmaster'
@@ -37,14 +45,6 @@
       - checks.acme
     - pillar:
         minionid: "{{ nodename }}"
-
-"Send wait message to slack":
-  salt.state:
-    - tgt: 'saltmaster'
-    - sls:
-      - slack.blast
-    - pillar:
-        mymessage: "Start wait for http check"
 
 "Send message to slack with status of application":
   salt.state:
