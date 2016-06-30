@@ -14,7 +14,7 @@
           tag:
             'Environment': 'Testing'
           minion:
-            master: 10.5.0.239
+            master: 10.5.1.121
 
 "Execute HighState on new test box":
   salt.state:
