@@ -56,12 +56,12 @@
         minionid: "saltmaster"
         refid: "{{ refid }}"
 
-"Destroy VM":
-  salt.function:
-    - tgt: 'saltmaster'
-    - name: cloud.destroy
-    - kwarg:
-        names:
-          - {{ nodename }}
+#"Destroy VM":
+#  salt.function:
+#    - tgt: 'saltmaster'
+#    - name: cloud.destroy
+#    - kwarg:
+#        names:
+#          - {{ nodename }}
 
 # Need to build tag
