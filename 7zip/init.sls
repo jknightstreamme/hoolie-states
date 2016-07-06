@@ -1,3 +1,5 @@
+{% set 7zipversion = pillar.get('version', '9.20.00.0') %}
+
 ###############################
 #
 # maintainer    Robert Booth <rbooth@saltstack.com>
@@ -15,7 +17,7 @@
 "Install 7Zip":
   pkg.installed:
     - name: 7zip
-    - version: 9.20.00.0
+    - version: {{ 7zipversion }}
 
 
 "Notification of install":
