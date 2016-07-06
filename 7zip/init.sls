@@ -1,4 +1,4 @@
-{% set 7zipversion = pillar.get('version', '9.20.00.0') %}
+{% set zipversion = pillar.get('version', '9.20.00.0') %}
 
 ###############################
 #
@@ -17,7 +17,7 @@
 "Install 7Zip":
   pkg.installed:
     - name: 7zip
-    - version: {{ 7zipversion }}
+    - version: {{ zipversion }}
 
 
 "Notification of install":
