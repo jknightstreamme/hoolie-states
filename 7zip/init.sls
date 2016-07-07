@@ -18,4 +18,4 @@
   pkg.installed:
     - name: 7zip
     - version: {{ zipversion }}
-
+    - pkg_verify: True
